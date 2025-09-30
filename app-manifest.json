@@ -1,0 +1,77 @@
+{
+  "name": "Sci-Fi Solo RPG Companion",
+  "short_name": "Sci-Fi RPG",
+  "description": "Solo tabletop RPG companion app with character management, dice rolling, and game tools",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#00d9ff",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "categories": ["games", "utilities"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dice Roller",
+      "short_name": "Dice",
+      "description": "Quick access to dice roller",
+      "url": "./index.html#dice",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Character Sheet",
+      "short_name": "Character",
+      "description": "Character management",
+      "url": "./index.html#character",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Combat Tracker",
+      "short_name": "Combat",
+      "description": "Initiative and encounter tracking",
+      "url": "./index.html#encounters",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Campaign Notes",
+      "short_name": "Notes",
+      "description": "Campaign and session notes",
+      "url": "./index.html#notes",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
