@@ -672,46 +672,46 @@ const omniToolData = {
         description: 'Basic Hahne-Kedar omni-tool with range enhancement capabilities.',
         effects: 'Manufacturer: Hahne-Kedar\nCost: 100 credits | Rarity: Common\n\nPassive Bonus:\n• +1 Power Range\n\nSpecial Effect (Once per Combat):\n• Refund TP if a Tech attack misses'
     },
-    'Kassa Fabrication OT-12': {
-        description: 'Fabrication-focused omni-tool with enhanced manufacturing.',
-        effects: '• Tech bonus: +1\n• Enhanced fabrication\n• Material synthesis\n• Rapid prototyping'
+    'Elanus \'Hornet\' Interface': {
+        description: 'Elanus Risk Control omni-tool focused on attack enhancement.',
+        effects: 'Manufacturer: Elanus Risk Control\nCost: 125 credits | Rarity: Common\n\nPassive Bonus:\n• +1 Power Attack\n\nSpecial Effect (Once per Combat):\n• Reroll one Tech attack roll'
     },
-    'Sirta Foundation OT-13': {
-        description: 'Medical-focused omni-tool with advanced health monitoring.',
-        effects: '• Tech bonus: +1\n• Medical enhancement\n• Health monitoring\n• Emergency treatment'
+    'Rosenkov \'Patchline\'': {
+        description: 'Rosenkov Materials omni-tool optimized for utility applications.',
+        effects: 'Manufacturer: Rosenkov Materials\nCost: 125 credits | Rarity: Common\n\nPassive Bonus:\n• -1 TP cost for non-damaging Tech abilities\n\nSpecial Effect (Once per Combat):\n• Auto-succeed on one tech Interact'
     },
 
     // Tier 2
-    'Aldrin Labs OT-21': {
-        description: 'Advanced omni-tool with improved processing power.',
-        effects: '• Tech bonus: +2\n• Enhanced processing\n• Advanced hacking\n• Multi-tool functions'
+    'Serrice \'Corelink\' Harness': {
+        description: 'Serrice Council omni-tool with balanced enhancement capabilities.',
+        effects: 'Manufacturer: Serrice Council\nCost: 400 credits | Rarity: Rare\n\nPassive Bonuses:\n• +1 Power Range\n• +1 Power Attack\n\nSpecial Effect (Once per Combat):\n• Use a Tech ability as a Free Action'
     },
-    'Ariake Technologies OT-22': {
-        description: 'Combat-oriented omni-tool with weapon integration.',
-        effects: '• Tech bonus: +2\n• Weapon integration\n• Combat apps\n• Targeting assistance'
+    'Armax Tactical Uplink': {
+        description: 'Armax Arsenal omni-tool designed for combat applications.',
+        effects: 'Manufacturer: Armax Arsenal\nCost: 450 credits | Rarity: Rare\n\nPassive Bonus:\n• +2 Power Attack\n\nSpecial Effect (Once per Combat):\n• Ignore cover bonuses for one Tech attack'
     },
-    'Rosenkov Materials OT-23': {
-        description: 'Engineering-focused tool with advanced fabrication.',
-        effects: '• Tech bonus: +2\n• Advanced engineering\n• Complex fabrication\n• System integration'
+    'Devlon \'Pathfinder\' Toolset': {
+        description: 'Devlon Industries omni-tool for utility and exploration.',
+        effects: 'Manufacturer: Devlon Industries\nCost: 375 credits | Rarity: Uncommon\n\nPassive Bonus:\n• -1 TP cost for utility Tech powers\n\nSpecial Effect (Once per Combat):\n• Cast one Tech ability without needing line of sight'
     },
 
     // Tier 3
-    'Techtronic OT-31': {
-        description: 'Elite omni-tool with cutting-edge technology.',
-        effects: '• Tech bonus: +3\n• Elite capabilities\n• Advanced AI assist\n• Quantum processing'
+    'Ariake \'Phantom\' Suite': {
+        description: 'Ariake Technologies elite omni-tool with advanced capabilities.',
+        effects: 'Manufacturer: Ariake Technologies\nCost: 900 credits | Rarity: Very Rare\n\nPassive Bonuses:\n• +2 Power Range\n• +1 Power Attack\n\nSpecial Effect (Once per Combat):\n• Cast the same Tech ability twice in one action'
     },
-    'Devlon Industries OT-32': {
-        description: 'Military-grade omni-tool with enhanced security.',
-        effects: '• Tech bonus: +3\n• Military encryption\n• Advanced security\n• Combat optimization'
+    'Kassa \'Vanguard\' Neural Link': {
+        description: 'Kassa Fabrication omni-tool with neural interface technology.',
+        effects: 'Manufacturer: Kassa Fabrication\nCost: 1,000 credits | Rarity: Very Rare\n\nPassive Bonus:\n• +2 Power Attack\n\nSpecial Effect (Once per Combat):\n• All Tech abilities cost -1 TP this round'
     },
-    'Elkoss Combine OT-33': {
-        description: 'Top-tier omni-tool with experimental features.',
-        effects: '• Tech bonus: +3\n• Experimental tech\n• Research capabilities\n• Prototype functions'
+    'Elanus \'Sovereign\' Node Array': {
+        description: 'Elanus Risk Control legendary omni-tool with unmatched precision.',
+        effects: 'Manufacturer: Elanus Risk Control\nCost: 1,200 credits | Rarity: Legendary\n\nPassive Bonus:\n• +2 Power Attack\n\nSpecial Effect (Once per Combat):\n• Ignore Evasion on one Tech attack'
     }
 };
 
 const bioticAmpData = {
-    // Basic Amps (L1-L3)
+    // Tier 1
     'L1 Biotic Amp': {
         description: 'Standard military-grade biotic amplifier with range enhancement.',
         effects: 'Cost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• +1 hex Biotic Power Range\n\nSpecial Effect (Once per Combat):\n• Gain +1 to a Biotic attack roll'
@@ -720,37 +720,61 @@ const bioticAmpData = {
         description: 'Advanced biotic amplifier with cost reduction capabilities.',
         effects: 'Cost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• Reduce BE cost of 1 ability by 1\n\nSpecial Effect (Once per Combat):\n• Regain 1 BE after using a Biotic ability'
     },
-    'L3 Biotic Amp': {
-        description: 'Advanced entry-level amp with enhanced capabilities.',
-        effects: '• Biotics bonus: +2\n• Enhanced power\n• Improved control\n• Reduced strain'
+    'Elanus Nova Amp': {
+        description: 'Elanus Risk Control biotic amplifier with energy regeneration.',
+        effects: 'Manufacturer: Elanus Risk Control\nCost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• +1 BE Regen at turn start\n\nSpecial Effect (Once per Combat):\n• Use any Tier 1 Biotic power without spending BE'
+    },
+    'Ariake Pulse Amp': {
+        description: 'Ariake Technologies amplifier specialized for kinetic powers.',
+        effects: 'Manufacturer: Ariake Technologies\nCost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• +1 to Biotics rolls with Push or Pull\n\nSpecial Effect (Once per Combat):\n• Push or Pull gains +2 range'
+    },
+    'Harmonix Focus Amp': {
+        description: 'Harmonix Systems amplifier optimized for Biotic Charge.',
+        effects: 'Manufacturer: Harmonix Systems\nCost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• +1 Evasion when using Biotic Charge\n\nSpecial Effect (Once per Combat):\n• Biotic Charge deals +1d6 damage'
     },
 
-    // Intermediate Amps (L4-L6)
-    'L4 Biotic Amp': {
-        description: 'Professional-grade amplifier for experienced biotics.',
-        effects: '• Biotics bonus: +2\n• Professional grade\n• Enhanced duration\n• Better precision'
+    // Tier 2
+    'L3 Biotic Amp': {
+        description: 'Advanced biotic amplifier with extended range capabilities.',
+        effects: 'Cost: 1,500 credits | Rarity: Rare\n\nPassive Bonus:\n• +2 hexes Biotic Power Range\n\nSpecial Effect (Once per Combat):\n• Ignore line-of-sight for a Biotic attack'
     },
+    'L4 Biotic Amp': {
+        description: 'Professional-grade amplifier with enhanced cost reduction.',
+        effects: 'Cost: 1,500 credits | Rarity: Rare\n\nPassive Bonus:\n• Reduce BE cost of 2 abilities by 1\n\nSpecial Effect (Once per Combat):\n• Immediately regain 2 BE'
+    },
+    'Aldrin Catalyst Amp': {
+        description: 'Aldrin Labs amplifier with regenerative capabilities.',
+        effects: 'Manufacturer: Aldrin Labs\nCost: 1,500 credits | Rarity: Rare\n\nPassive Bonus:\n• +2 BE Regen at mission start\n\nSpecial Effect (Once per Combat):\n• Heal 1 HP when using any Biotic power'
+    },
+    'Serrice Resonance Amp': {
+        description: 'Serrice Council amplifier specialized for Warp and Singularity.',
+        effects: 'Manufacturer: Serrice Council\nCost: 1,500 credits | Rarity: Rare\n\nPassive Bonus:\n• +1 to Biotics rolls with Warp or Singularity\n\nSpecial Effect (Once per Combat):\n• Ignore armor when using Warp'
+    },
+    'Harmonix Surge Amp': {
+        description: 'Harmonix Systems advanced Biotic Charge amplifier.',
+        effects: 'Manufacturer: Harmonix Systems\nCost: 1,500 credits | Rarity: Rare\n\nPassive Bonus:\n• +1 Combat after Biotic Charge (1 turn)\n\nSpecial Effect (Once per Combat):\n• Stun target after Charge'
+    },
+
+    // Tier 3
     'L5 Biotic Amp': {
-        description: 'High-performance amp with advanced power management.',
-        effects: '• Biotics bonus: +3\n• High performance\n• Advanced management\n• Extended use'
+        description: 'Elite biotic amplifier with maximum range enhancement.',
+        effects: 'Cost: 3,000 credits | Rarity: Elite\n\nPassive Bonus:\n• +3 hexes Biotic Power Range\n\nSpecial Effect (Once per Combat):\n• All Biotic attacks gain +1 range this round'
     },
     'L6 Biotic Amp': {
-        description: 'Elite amplifier used by specialized biotic operatives.',
-        effects: '• Biotics bonus: +3\n• Elite performance\n• Specialized functions\n• Combat optimization'
+        description: 'Ultimate biotic amplifier with maximum cost reduction.',
+        effects: 'Cost: 3,000 credits | Rarity: Elite\n\nPassive Bonus:\n• Reduce BE cost of 3 abilities by 1\n\nSpecial Effect (Once per Combat):\n• Regain 3 BE instantly'
     },
-
-    // Advanced Amps (L7-L9)
-    'L7 Biotic Amp': {
-        description: 'Cutting-edge amplifier with experimental technology.',
-        effects: '• Biotics bonus: +4\n• Experimental tech\n• Massive amplification\n• Prototype features'
+    'Rosenkov Kinetic Amp': {
+        description: 'Rosenkov Materials amplifier with massive energy reserves.',
+        effects: 'Manufacturer: Rosenkov Materials\nCost: 3,000 credits | Rarity: Elite\n\nPassive Bonus:\n• +3 BE Regen at mission start\n\nSpecial Effect (Once per Combat):\n• Next Biotic power used gains +1d6 damage'
     },
-    'L8 Biotic Amp': {
-        description: 'Military-grade amp for special forces biotics.',
-        effects: '• Biotics bonus: +4\n• Military grade\n• Combat enhanced\n• Maximum output'
+    'Serrice Overload Amp': {
+        description: 'Serrice Council elite amplifier with universal enhancement.',
+        effects: 'Manufacturer: Serrice Council\nCost: 3,000 credits | Rarity: Elite\n\nPassive Bonus:\n• +1 to all Biotics rolls\n\nSpecial Effect (Once per Combat):\n• Biotic attacks ignore cover'
     },
-    'L9 Biotic Amp': {
-        description: 'Ultimate biotic amplifier for the most powerful biotics.',
-        effects: '• Biotics bonus: +5\n• Ultimate power\n• Legendary capabilities\n• Unmatched performance'
+    'Harmonix Apex Amp': {
+        description: 'Harmonix Systems ultimate Biotic Charge amplifier.',
+        effects: 'Manufacturer: Harmonix Systems\nCost: 3,000 credits | Rarity: Elite\n\nPassive Bonus:\n• After Charge, next melee +1d6 damage\n\nSpecial Effect (Once per Combat):\n• Gain +1 Evasion for rest of turn after Charge'
     }
 };
 
