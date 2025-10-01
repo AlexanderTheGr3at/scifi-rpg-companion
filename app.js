@@ -31,29 +31,59 @@ let characterEventListenersSetup = false;
 
 const classData = {
     'Soldier': {
-        description: 'Masters of combat tactics and weaponry. Soldiers excel in direct confrontation and can use any weapon or armor effectively.',
-        effects: '• +2 to Combat attribute\n• Can use Heavy Armor without penalty\n• Extra weapon training (can use all weapon types)\n• Tactical expertise in battlefield scenarios'
+        description: 'Pure combat specialist and battlefield anchor. Front-line fighter, weapon specialist, sustained damage dealer, tactical flexibility.',
+        effects: '• +2 to Health, +1 to Combat\n• **Weapon Mastery:** Choose weapon type for +1 damage permanently\n• **Heavy Weapons Training:** Can use heavy weapons and move at half speed\n• **Soldier Training:** Extra shots on multi-shot weapons\n• **Ammo Specialization:** Switch between Incendiary/Disruptor/Cryo ammo types\n• **Adrenaline Rush:** +1d4 weapon damage, half incoming damage, immunity to Stunned/Slowed (2 uses/mission)\n• **Concussive Shot:** 1d6+Combat damage, knock prone or stagger (4-8 uses/mission)\n• All armor types with no penalties'
     },
     'Engineer': {
-        description: 'Technical specialists who excel at manipulating technology and creating solutions through ingenuity.',
-        effects: '• +2 to Tech attribute\n• Can hack and modify technology systems\n• Creates tech mines and deployable defenses\n• Bonus to engineering and repair tasks'
+        description: 'Technology expert who manipulates the battlefield through electronic warfare and gadgetry.',
+        effects: '• +2 to Tech attribute\n• +1 to Health attribute\n• Access to advanced tech abilities\n• Drone and turret deployment\n• Electronic warfare capabilities'
     },
     'Adept': {
-        description: 'Biotic specialists who harness dark energy to manipulate matter and create devastating attacks.',
+        description: 'Pure biotic specialist who wields the fundamental forces of the universe.',
         effects: '• +2 to Biotics attribute\n• Access to powerful biotic abilities\n• Can manipulate gravity and mass\n• Increased biotic energy pool'
     },
     'Vanguard': {
-        description: 'Aggressive fighters who combine biotic powers with close-combat expertise for devastating hit-and-run tactics.',
+        description: 'Aggressive fighter who combines biotic powers with close-combat expertise for devastating hit-and-run tactics.',
         effects: '• +1 to Combat, +1 to Biotics\n• Biotic charge abilities for closing distance\n• Can use medium armor effectively\n• Enhanced mobility in combat'
     },
     'Sentinel': {
-        description: 'Versatile operatives who blend tech and biotic abilities to support allies and control the battlefield.',
+        description: 'Versatile operative who blends tech and biotic abilities to support allies and control the battlefield.',
         effects: '• +1 to Tech, +1 to Biotics\n• Tech armor for enhanced protection\n• Can combine tech and biotic powers\n• Support and defensive specialization'
     },
     'Infiltrator': {
-        description: 'Stealth specialists who use technology and precision to eliminate targets from the shadows.',
-        effects: '• +1 to Combat, +1 to Tech\n• Tactical cloak for stealth operations\n• Sniper rifle expertise\n• Enhanced hacking and sabotage abilities'
+        description: 'Tech-enhanced precision specialist and stealth operative. Long-range elimination, stealth operations, tech disruption, precision support.',
+        effects: '• +1 to Health, +1 to Combat, +1 to Tech\n• **Sniper Specialist:** +1 damage with sniper rifles, choose 1 additional Tier 1 tech power\n• **Stealth Operations:** +2 to stealth/infiltration/reconnaissance rolls\n• **Precision Training:** +1 to hit at 12+ hexes, crits deal +2d6 damage\n• **Tactical Cloak:** Invisible for 2 rounds, +2 attack, first attack +1d6 damage (3-7 uses/mission)\n• Weapon Access: Pistols, SMGs, Sniper Rifles\n• All armor types (heavy armor has tech power penalties)'
     }
+};
+
+// Class-specific powers that are automatically granted
+const classSpecificPowers = {
+    'Soldier': [
+        {
+            name: 'Adrenaline Rush',
+            type: 'class',
+            description: 'Combat enhancement that boosts damage and provides damage resistance.',
+            effects: '• Duration: 2 rounds\n• +1d4 weapon damage\n• Reduce incoming damage by half (after armor reduction)\n• Immunity to Stunned and Slowed\n• Cannot be used again until previous effect ends\n• Uses: 2 per mission'
+        },
+        {
+            name: 'Concussive Shot',
+            type: 'class',
+            description: 'Ranged attack that deals damage and can knock enemies prone.',
+            effects: '• Range: 12 hexes\n• 1d6+Combat damage\n• Target makes Evasion Check vs. Combat DC (10+Combat) or Knocked Prone\n• Targets with barriers are Staggered instead (half movement next turn)\n• Uses: 4-8 per mission (based on Combat attribute)'
+        }
+    ],
+    'Infiltrator': [
+        {
+            name: 'Tactical Cloak',
+            type: 'class',
+            description: 'Advanced stealth technology that renders the user invisible.',
+            effects: '• Duration: 2 rounds or until you attack\n• Become invisible to enemies\n• +2 to all attack rolls while cloaked\n• First attack while cloaked deals +1d6 damage\n• Cannot be used while adjacent to enemies\n• Moving does not break cloak\n• Uses: 3-7 per mission (based on Tech attribute)'
+        }
+    ],
+    'Engineer': [],
+    'Adept': [],
+    'Vanguard': [],
+    'Sentinel': []
 };
 
 const raceData = {
@@ -185,8 +215,11 @@ const backgroundData = {
 const weaponData = {
     // Assault Rifles
     'M-8 Avenger': {
-        description: 'Standard Systems Alliance assault rifle. Reliable, accurate, and easy to use.',
-        effects: '• Damage: 2d6\n• Range: Medium\n• Auto-fire capable\n• Standard military issue'
+        description: 'The M-8 Avenger is the standard-issue assault rifle of the Systems Alliance military. Proven in countless engagements across the galaxy, this versatile weapon offers dependable performance in all combat situations.',
+        effects: '• **Range:** 14 hexes\n• **Damage:** 1d6 + Combat\n• **Damage Type:** Kinetic\n• **Shots:** 2 (Soldier: 3)\n• **Thermal Clips:** 1 per mission\n• **Traits:** Reliable\n• **Cost:** 500 credits\n• **Rarity:** Standard',
+        traits: {
+            'Reliable': 'Reroll one failed attack roll per mission'
+        }
     },
     'M-15 Vindicator': {
         description: 'Burst-fire assault rifle with excellent accuracy and stopping power.',
@@ -1360,6 +1393,7 @@ function setupCharacterEventListeners() {
         classElement.addEventListener('change', () => {
             updateClassStats();
             updateClassDescription();
+            updateClassSpecificPowers();
             autoSaveCharacter();
         });
     }
@@ -1401,6 +1435,9 @@ function setupCharacterEventListeners() {
     if (clearBtn) {
         clearBtn.addEventListener('click', clearAllCharacterData);
     }
+
+    // Set up powers listeners
+    setupPowersListeners();
 
     // Mark as set up to prevent duplicate setup
     characterEventListenersSetup = true;
@@ -1558,6 +1595,9 @@ function loadCharacterFromMemory(characterIndex) {
     updateClassDescription();
     updateRaceDescription();
     updateBackgroundDescription();
+
+    // Update class-specific powers
+    updateClassSpecificPowers();
 
     // Update equipment descriptions
     updateEquipmentDescription('primary-weapon');
@@ -1753,6 +1793,36 @@ function adjustPool(poolType, delta) {
 function updateClassStats() {
     recalculateAllAttributes();
     autoSaveCharacter();
+}
+
+function updateClassSpecificPowers() {
+    const classElement = document.getElementById('character-class');
+    if (!classElement || !classElement.value) return;
+
+    const selectedClass = classElement.value;
+    const classPowers = classSpecificPowers[selectedClass] || [];
+
+    // Remove existing class powers
+    activeBioticPowers = activeBioticPowers.filter(power => power.type !== 'class');
+    activeTechPowers = activeTechPowers.filter(power => power.type !== 'class');
+
+    // Add new class powers
+    classPowers.forEach(power => {
+        const powerCopy = {
+            id: bioticPowerIdCounter++, // Use biotic counter for ID generation
+            name: power.name,
+            type: power.type,
+            description: power.description,
+            effects: power.effects
+        };
+
+        // Add to tech powers list (class powers are displayed in tech section)
+        activeTechPowers.push(powerCopy);
+    });
+
+    // Update displays
+    updateBioticPowersDisplay();
+    updateTechPowersDisplay();
 }
 
 function updateRaceStats() {
@@ -2055,7 +2125,17 @@ function updateEquipmentDescription(equipmentType) {
         }
 
         // Always show effects for all equipment types
-        effectsField.value = data.effects;
+        let effectsText = data.effects;
+
+        // Add traits section for weapons
+        if (equipmentType.includes('weapon') && data.traits) {
+            effectsText += '\n\n**WEAPON TRAITS:**';
+            Object.entries(data.traits).forEach(([traitName, traitEffect]) => {
+                effectsText += `\n• **${traitName}:** ${traitEffect}`;
+            });
+        }
+
+        effectsField.value = effectsText;
         effectsFieldContainer.style.display = 'block';
 
         // Special handling for armor to update armor-value and barrier fields
@@ -2456,6 +2536,12 @@ function removeBioticPower(powerId) {
 }
 
 function removeTechPower(powerId) {
+    // Find the power to check if it's a class power
+    const power = activeTechPowers.find(p => p.id === powerId);
+    if (power && power.type === 'class') {
+        return; // Cannot remove class powers
+    }
+
     activeTechPowers = activeTechPowers.filter(power => power.id !== powerId);
     updateTechPowersDisplay();
     autoSaveCharacter();
@@ -2514,12 +2600,10 @@ function updateTechPowersDisplay() {
     if (noMessage) noMessage.style.display = 'none';
 
     container.innerHTML = activeTechPowers.map(power => `
-        <div class="power-item" data-power-id="${power.id}">
+        <div class="power-item ${power.type === 'class' ? 'class-power' : ''}" data-power-id="${power.id}">
             <div class="power-header">
-                <h4 class="power-name">${power.name}</h4>
-                <button class="remove-power-btn" onclick="removeTechPower(${power.id})" title="Remove Power">
-                    ×
-                </button>
+                <h4 class="power-name">${power.name}${power.type === 'class' ? ' <span class="class-power-badge">(Class Power)</span>' : ''}</h4>
+                ${power.type !== 'class' ? `<button class="remove-power-btn" onclick="removeTechPower(${power.id})" title="Remove Power">×</button>` : ''}
             </div>
             <div class="power-content">
                 <div class="power-description">

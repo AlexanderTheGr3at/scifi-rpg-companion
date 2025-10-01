@@ -1,0 +1,756 @@
+/* Basic Reset and Body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+}
+
+/* Squad Management */
+.squad-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.tab-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+    border: 2px solid #333;
+    background: #f4f4f4;
+    border-radius: 8px;
+    cursor: pointer;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    background: #e9e9e9;
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background: #333;
+    color: white;
+}
+
+.tab-number {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.tab-name {
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.squad-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.squad-controls button {
+    padding: 8px 16px;
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.squad-controls button:hover {
+    background: #888;
+}
+
+h1 {
+    color: #333;
+    font-size: 2em;
+}
+
+h2 {
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+/* Character Basics */
+.basics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.field input,
+.field select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.field select {
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Core Attributes */
+.attributes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.credits-section {
+    margin-top: 15px;
+    padding: 10px;
+    border: 2px solid #ff6b35;
+    border-radius: 8px;
+    background: #fff8f5;
+}
+
+.attribute {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+}
+
+.attribute label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.attribute input {
+    width: 80px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Equipment */
+.equipment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Equipment Info */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-panel {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.info-panel h3 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #444;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.info-content {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Powers */
+.powers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.power-section {
+    padding: 15px;
+    border: 2px solid #9b59b6;
+    border-radius: 8px;
+    background: #faf7ff;
+}
+
+.power-section h3 {
+    margin: 0 0 15px 0;
+    color: #9b59b6;
+    font-size: 1.2em;
+}
+
+.power-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.power-slot {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+}
+
+.power-slot label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.power-slot select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.power-info {
+    font-size: 0.85em;
+    color: #666;
+    line-height: 1.3;
+    min-height: 40px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 8px;
+    background: #fafafa;
+}
+
+/* Enhanced Power Details Styling */
+.power-details {
+    font-size: 0.85em;
+    line-height: 1.3;
+}
+
+.power-header {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.power-tier {
+    color: #9b59b6;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.power-stats {
+    margin-bottom: 8px;
+    padding: 5px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    font-size: 0.8em;
+}
+
+.stat-row {
+    margin-bottom: 3px;
+}
+
+.power-effect {
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.power-description {
+    margin-bottom: 6px;
+    color: #555;
+    font-style: italic;
+}
+
+.power-special {
+    color: #666;
+    font-size: 0.8em;
+    border-top: 1px solid #ddd;
+    padding-top: 4px;
+}
+
+/* Enhanced Weapon Details Styling */
+.weapon-details {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* Enhanced Gear Details Styling */
+.gear-details {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.gear-header {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.gear-tier {
+    color: #9b59b6;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.gear-manufacturer {
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 0.85em;
+}
+
+.gear-stats {
+    margin-bottom: 12px;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.gear-stats div {
+    margin-bottom: 3px;
+}
+
+.gear-bonuses {
+    margin-bottom: 10px;
+    padding: 6px 8px;
+    background: #e8f4f8;
+    border-left: 3px solid #007acc;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.gear-special {
+    padding: 6px 8px;
+    background: #fff8e1;
+    border-left: 3px solid #ff9800;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: #e65100;
+}
+
+.weapon-header {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.weapon-stats {
+    margin-bottom: 12px;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.weapon-stats div {
+    margin-bottom: 3px;
+}
+
+.weapon-traits {
+    margin-top: 10px;
+}
+
+.weapon-traits > strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 0.95em;
+}
+
+.trait-effect {
+    margin: 4px 0;
+    padding: 6px 8px;
+    background: #fff;
+    border-left: 3px solid #007acc;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.trait-effect strong {
+    color: #007acc;
+}
+
+/* Power Upgrade System Styling */
+.power-upgrade-controls {
+    margin: 8px 0;
+    padding: 6px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.power-upgrade-controls label {
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-right: 8px;
+    color: #555;
+}
+
+.power-upgrade-controls select {
+    margin: 2px 4px;
+    padding: 3px 6px;
+    font-size: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: white;
+}
+
+.power-level-indicator {
+    background: #007acc;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    margin-left: 8px;
+}
+
+.power-upgrade-indicator {
+    background: #28a745;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+.power-upgrade-info {
+    margin: 8px 0;
+    padding: 8px;
+    background: #e8f4f8;
+    border-left: 4px solid #007acc;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.power-upgrade-info strong {
+    color: #005580;
+}
+
+.equipment-slot {
+    display: flex;
+    flex-direction: column;
+}
+
+.equipment-slot label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.equipment-slot input,
+.equipment-slot select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.equipment-slot select {
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Power Tracking */
+.power-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.power-pool {
+    padding: 15px;
+    border: 2px solid #007acc;
+    border-radius: 8px;
+    background: white;
+}
+
+.power-pool label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #007acc;
+}
+
+.pool-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pool-controls input.current,
+.pool-controls input.max {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pool-controls span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pool-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.pool-buttons button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #007acc;
+    background: #007acc;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pool-buttons button:hover {
+    background: #005fa3;
+}
+
+/* Combat Tracking */
+.combat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.combat-stat {
+    padding: 15px;
+    border: 2px solid #cc0000;
+    border-radius: 8px;
+    background: white;
+}
+
+.armor-display {
+    background: #f0f0f0 !important;
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+}
+
+.combat-stat label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #cc0000;
+}
+
+.status-effects {
+    grid-column: 1 / -1;
+    padding: 15px;
+    border: 2px solid #666;
+    border-radius: 8px;
+    background: white;
+}
+
+.status-effects label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.status-effects textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+}
+
+/* Controls */
+.controls {
+    text-align: center;
+    padding: 20px;
+    background: #e9e9e9;
+}
+
+.controls button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.controls button:hover {
+    background: #555;
+}
+
+/* PWA Standalone Mode Styling */
+.pwa-standalone {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pwa-standalone .container {
+    padding-top: 10px;
+}
+
+/* Enhanced Mobile Touch Targets */
+@media (max-width: 768px) {
+    /* Larger touch targets for mobile */
+    button, select, input[type="number"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .pool-buttons button {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    .tab-button {
+        min-height: 60px;
+        padding: 12px 16px;
+    }
+
+    /* Better mobile scrolling */
+    .power-info, .info-content {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent text selection on UI elements */
+    .tab-button, button, .pool-buttons {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    /* Grid layouts for mobile */
+    .basics-grid,
+    .equipment-grid,
+    .power-grid,
+    .info-grid,
+    .powers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .combat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .attributes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .controls button {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* Squad Management Mobile */
+    .squad-tabs {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .tab-button {
+        min-width: 80px;
+        padding: 8px 10px;
+    }
+
+    .tab-number {
+        font-size: 1em;
+    }
+
+    .tab-name {
+        font-size: 0.8em;
+    }
+
+    .squad-controls {
+        gap: 5px;
+    }
+
+    .squad-controls button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

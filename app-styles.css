@@ -1266,6 +1266,24 @@ body {
     box-shadow: 0 2px 8px rgba(0, 217, 255, 0.2);
 }
 
+.power-item.class-power {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: #10b981;
+}
+
+.power-item.class-power:hover {
+    border-color: #34d399;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.class-power-badge {
+    color: #10b981;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .power-header {
     display: flex;
     justify-content: space-between;

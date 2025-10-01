@@ -1,0 +1,21 @@
+PWA Icon Creation Instructions:
+
+Since automatic icon creation failed, please create two PNG image files manually:
+
+1. icon-192.png (192x192 pixels)
+2. icon-512.png (512x512 pixels)
+
+You can:
+- Use any image editing software (Paint, GIMP, Photoshop, etc.)
+- Create a simple logo with "BTR" text and a dark background
+- Use the create-icons.html file I created to generate icons via browser screenshot
+
+Temporary solution:
+- Copy any existing PNG file to icon-192.png and icon-512.png
+- The PWA will work without custom icons (it will use browser defaults)
+
+For best results, create icons with:
+- Dark background (#333333)
+- White text "BTR" and "Characters"
+- Simple spaceship or sci-fi themed element
+- Rounded corners for modern look

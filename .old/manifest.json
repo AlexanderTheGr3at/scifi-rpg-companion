@@ -1,0 +1,77 @@
+{
+  "name": "Beyond the Relay Character Sheet",
+  "short_name": "BTR Characters",
+  "description": "Digital character sheet for Beyond the Relay tabletop RPG",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#333333",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "categories": ["games", "utilities"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Character 1",
+      "short_name": "Char 1",
+      "description": "Switch to Character 1",
+      "url": "./index.html#character-1",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Character 2",
+      "short_name": "Char 2",
+      "description": "Switch to Character 2",
+      "url": "./index.html#character-2",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Character 3",
+      "short_name": "Char 3",
+      "description": "Switch to Character 3",
+      "url": "./index.html#character-3",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Character 4",
+      "short_name": "Char 4",
+      "description": "Switch to Character 4",
+      "url": "./index.html#character-4",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

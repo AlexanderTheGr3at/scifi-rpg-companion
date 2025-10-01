@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond the Relay - Character Sheet</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Digital character sheet for Beyond the Relay tabletop RPG">
+    <meta name="theme-color" content="#333333">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="BTR Characters">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- PWA Icons -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Beyond the Relay Squad Management</h1>
+
+            <!-- Squad Tabs -->
+            <div class="squad-tabs">
+                <button class="tab-button active" onclick="switchCharacter(1)" id="tab-1">
+                    <span class="tab-number">1</span>
+                    <span class="tab-name" id="tab-name-1">Character 1</span>
+                </button>
+                <button class="tab-button" onclick="switchCharacter(2)" id="tab-2">
+                    <span class="tab-number">2</span>
+                    <span class="tab-name" id="tab-name-2">Character 2</span>
+                </button>
+                <button class="tab-button" onclick="switchCharacter(3)" id="tab-3">
+                    <span class="tab-number">3</span>
+                    <span class="tab-name" id="tab-name-3">Character 3</span>
+                </button>
+                <button class="tab-button" onclick="switchCharacter(4)" id="tab-4">
+                    <span class="tab-number">4</span>
+                    <span class="tab-name" id="tab-name-4">Character 4</span>
+                </button>
+            </div>
+
+            <!-- Squad Controls -->
+            <div class="squad-controls">
+                <button onclick="saveSquad()">Save Squad</button>
+                <button onclick="loadSquad()">Load Squad</button>
+                <button onclick="clearSquad()">Clear Squad</button>
+                <button onclick="exportSquad()">Export Squad</button>
+                <button onclick="generateRandomCharacter()">Random Character</button>
+                <input type="file" id="import-input" accept=".json" style="display: none;" onchange="importSquad(event)">
+                <button onclick="document.getElementById('import-input').click()">Import Squad</button>
+            </div>
+        </header>
+
+        <div class="character-sheet" id="character-sheet">
+            <!-- Character Basics -->
+            <section class="character-basics">
+                <h2>Character Basics</h2>
+                <div class="basics-grid">
+                    <div class="field">
+                        <label for="character-name">Name:</label>
+                        <input type="text" id="character-name" name="character-name">
+                    </div>
+                    <div class="field">
+                        <label for="character-class">Class:</label>
+                        <select id="character-class" name="character-class">
+                            <option value="">Select Class...</option>
+                            <option value="Soldier">Soldier</option>
+                            <option value="Engineer">Engineer</option>
+                            <option value="Adept">Adept</option>
+                            <option value="Vanguard">Vanguard</option>
+                            <option value="Sentinel">Sentinel</option>
+                            <option value="Infiltrator">Infiltrator</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="character-race">Race:</label>
+                        <select id="character-race" name="character-race">
+                            <option value="">Select Race...</option>
+                            <option value="Human">Human</option>
+                            <option value="Asari">Asari</option>
+                            <option value="Turian">Turian</option>
+                            <option value="Krogan">Krogan</option>
+                            <option value="Salarian">Salarian</option>
+                            <option value="Quarian">Quarian</option>
+                            <option value="Drell">Drell</option>
+                            <option value="Batarian">Batarian</option>
+                            <option value="Vorcha">Vorcha</option>
+                            <option value="Volus">Volus</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="character-background">Background:</label>
+                        <select id="character-background" name="character-background">
+                            <option value="">Select Background...</option>
+                            <optgroup label="Generic Backgrounds">
+                                <option value="Military">Military</option>
+                                <option value="Corporate Executive">Corporate Executive</option>
+                                <option value="Frontier Colonist">Frontier Colonist</option>
+                                <option value="Criminal Underground">Criminal Underground</option>
+                                <option value="Academic Researcher">Academic Researcher</option>
+                                <option value="Military Intelligence">Military Intelligence</option>
+                                <option value="Mercenary Veteran">Mercenary Veteran</option>
+                                <option value="Religious Order">Religious Order</option>
+                                <option value="Pirate/Raider">Pirate/Raider</option>
+                                <option value="Exile/Refugee">Exile/Refugee</option>
+                                <option value="Diplomat/Envoy">Diplomat/Envoy</option>
+                                <option value="Freelance Investigator">Freelance Investigator</option>
+                                <option value="Colonial Security">Colonial Security</option>
+                                <option value="Smuggler">Smuggler</option>
+                                <option value="Arena Fighter">Arena Fighter</option>
+                                <option value="Information Broker">Information Broker</option>
+                                <option value="Ship's Crew">Ship's Crew</option>
+                            </optgroup>
+                            <optgroup label="Race-Specific Backgrounds">
+                                <option value="Asari Commandos">Asari Commandos</option>
+                                <option value="Turian Service Record">Turian Service Record</option>
+                                <option value="Quarian Pilgrimage">Quarian Pilgrimage</option>
+                                <option value="Krogan Clan Exile">Krogan Clan Exile</option>
+                                <option value="Drell Compact Servitor">Drell Compact Servitor</option>
+                                <option value="Batarian Hegemony Defector">Batarian Hegemony Defector</option>
+                                <option value="Volus Trade Consortium">Volus Trade Consortium</option>
+                                <option value="Salarian Science Caste">Salarian Science Caste</option>
+                                <option value="Vorcha Pack Survivor">Vorcha Pack Survivor</option>
+                                <option value="Alliance Military">Alliance Military</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Attributes -->
+            <section class="core-attributes">
+                <h2>Core Attributes</h2>
+                <div class="attributes-grid">
+                    <div class="attribute">
+                        <label for="health">Health:</label>
+                        <input type="number" id="health" name="health" min="0" value="0">
+                    </div>
+                    <div class="attribute">
+                        <label for="combat">Combat:</label>
+                        <input type="number" id="combat" name="combat" min="0" value="0">
+                    </div>
+                    <div class="attribute">
+                        <label for="evasion">Evasion:</label>
+                        <input type="number" id="evasion" name="evasion" min="0" value="0">
+                    </div>
+                    <div class="attribute">
+                        <label for="charisma">Charisma:</label>
+                        <input type="number" id="charisma" name="charisma" min="0" value="0">
+                    </div>
+                    <div class="attribute">
+                        <label for="tech">Tech:</label>
+                        <input type="number" id="tech" name="tech" min="0" value="0">
+                    </div>
+                    <div class="attribute">
+                        <label for="biotics">Biotics:</label>
+                        <input type="number" id="biotics" name="biotics" min="0" value="0">
+                    </div>
+                </div>
+                <div class="credits-section">
+                    <div class="attribute">
+                        <label for="credits">Starting Credits:</label>
+                        <input type="number" id="credits" name="credits" min="0" value="0" readonly>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equipment -->
+            <section class="equipment">
+                <h2>Equipment</h2>
+                <div class="equipment-grid">
+                    <div class="equipment-slot">
+                        <label for="primary-weapon">Primary Weapon:</label>
+                        <select id="primary-weapon" name="primary-weapon">
+                            <option value="">Select Primary Weapon...</option>
+                            <optgroup label="Assault Rifles">
+                                <option value="M-8 Avenger">M-8 Avenger</option>
+                                <option value="M-7 Lancer">M-7 Lancer</option>
+                                <option value="Adas Anti-Synthetic Rifle">Adas Anti-Synthetic Rifle</option>
+                                <option value="M-15 Vindicator">M-15 Vindicator</option>
+                                <option value="Chakram Launcher">Chakram Launcher</option>
+                                <option value="M-96 Mattock">M-96 Mattock</option>
+                                <option value="Phaeston">Phaeston</option>
+                                <option value="Geth Pulse Rifle">Geth Pulse Rifle</option>
+                                <option value="M-37 Falcon">M-37 Falcon</option>
+                                <option value="Collector Assault Rifle">Collector Assault Rifle</option>
+                                <option value="M-76 Revenant">M-76 Revenant</option>
+                                <option value="N7 Valkyrie">N7 Valkyrie</option>
+                                <option value="Particle Rifle">Particle Rifle</option>
+                                <option value="M-55 Argus">M-55 Argus</option>
+                                <option value="M-99 Saber">M-99 Saber</option>
+                                <option value="Cerberus Harrier">Cerberus Harrier</option>
+                                <option value="N7 Typhoon">N7 Typhoon</option>
+                            </optgroup>
+                            <optgroup label="Shotguns">
+                                <option value="M-23 Katana">M-23 Katana</option>
+                                <option value="Disciple">Disciple</option>
+                                <option value="M-11 Wraith">M-11 Wraith</option>
+                                <option value="Geth Plasma Shotgun">Geth Plasma Shotgun</option>
+                                <option value="Graal Spike Thrower">Graal Spike Thrower</option>
+                                <option value="M-300 Claymore">M-300 Claymore</option>
+                                <option value="N7 Crusader">N7 Crusader</option>
+                                <option value="AT-12 Raider">AT-12 Raider</option>
+                                <option value="Reegar Carbine">Reegar Carbine</option>
+                                <option value="Venom Shotgun">Venom Shotgun</option>
+                                <option value="N7 Piranha">N7 Piranha</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="equipment-slot">
+                        <label for="secondary-weapon">Secondary Weapon:</label>
+                        <select id="secondary-weapon" name="secondary-weapon">
+                            <option value="">Select Secondary Weapon...</option>
+                            <optgroup label="Pistols">
+                                <option value="M-3 Predator">M-3 Predator</option>
+                                <option value="M-5 Phalanx">M-5 Phalanx</option>
+                                <option value="M-6 Carnifex">M-6 Carnifex</option>
+                                <option value="Arc Pistol">Arc Pistol</option>
+                            </optgroup>
+                            <optgroup label="Heavy Weapons">
+                                <option value="M-100 Grenade Launcher">M-100 Grenade Launcher</option>
+                                <option value="ML-77 Missile Launcher">ML-77 Missile Launcher</option>
+                                <option value="M-490 Blackstorm">M-490 Blackstorm</option>
+                                <option value="Collector Particle Beam">Collector Particle Beam</option>
+                            </optgroup>
+                            <optgroup label="Light Weapons">
+                                <option value="M-4 Shuriken">M-4 Shuriken</option>
+                                <option value="M-9 Tempest">M-9 Tempest</option>
+                                <option value="M-12 Locust">M-12 Locust</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="equipment-slot">
+                        <label for="armor">Armor:</label>
+                        <select id="armor" name="armor">
+                            <option value="">Select Armor...</option>
+                            <optgroup label="Aldrin Labs">
+                                <option value="Aldrin Hydra Armor">Aldrin Hydra Armor</option>
+                                <option value="Aldrin Labs Agent Armor">Aldrin Labs Agent Armor</option>
+                                <option value="Aldrin Onyx Armor">Aldrin Onyx Armor</option>
+                            </optgroup>
+                            <optgroup label="Ariake Technologies">
+                                <option value="Ariake Mercenary Armor">Ariake Mercenary Armor</option>
+                            </optgroup>
+                            <optgroup label="Armax Arsenal">
+                                <option value="Armax Predator Armor">Armax Predator Armor</option>
+                                <option value="Armax Predator X Armor">Armax Predator X Armor</option>
+                            </optgroup>
+                            <optgroup label="Devlon Industries">
+                                <option value="Devlon Explorer Armor">Devlon Explorer Armor</option>
+                                <option value="Devlon Liberator Armor">Devlon Liberator Armor</option>
+                            </optgroup>
+                            <optgroup label="Elkoss Combine">
+                                <option value="Elkoss Assassin Armor">Elkoss Assassin Armor</option>
+                                <option value="Elkoss Gladiator Armor">Elkoss Gladiator Armor</option>
+                            </optgroup>
+                            <optgroup label="ERCS">
+                                <option value="ERCS Duelist Armor">ERCS Duelist Armor</option>
+                                <option value="ERCS Guardian Armor">ERCS Guardian Armor</option>
+                                <option value="ERCS Warlord Armor">ERCS Warlord Armor</option>
+                            </optgroup>
+                            <optgroup label="Geth">
+                                <option value="Geth Battlemaster Armor">Geth Battlemaster Armor</option>
+                                <option value="Geth Berserker Armor">Geth Berserker Armor</option>
+                                <option value="Geth Rage Armor">Geth Rage Armor</option>
+                            </optgroup>
+                            <optgroup label="Hahne-Kedar">
+                                <option value="Hahne-Kedar Mantis Armor">Hahne-Kedar Mantis Armor</option>
+                                <option value="Hahne-Kedar Scorpion Armor">Hahne-Kedar Scorpion Armor</option>
+                                <option value="Hahne-Kedar Silverback Armor">Hahne-Kedar Silverback Armor</option>
+                            </optgroup>
+                            <optgroup label="Kassa Fabrication">
+                                <option value="Kassa Fabrication Colossus Armor">Kassa Fabrication Colossus Armor</option>
+                            </optgroup>
+                            <optgroup label="Rosenkov Materials">
+                                <option value="Rosenkov Thermal Armor">Rosenkov Thermal Armor</option>
+                                <option value="Rosenkov Titan Armor">Rosenkov Titan Armor</option>
+                                <option value="Rosenkov Ursa Armor">Rosenkov Ursa Armor</option>
+                            </optgroup>
+                            <optgroup label="Serrice Council">
+                                <option value="Serrice Phantom Armor">Serrice Phantom Armor</option>
+                            </optgroup>
+                            <optgroup label="Sirta Foundation">
+                                <option value="Sirta Phoenix Armor">Sirta Phoenix Armor</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="equipment-slot">
+                        <label for="omni-tool">Omni-tool:</label>
+                        <select id="omni-tool" name="omni-tool">
+                            <option value="">Select Omni-tool...</option>
+                            <optgroup label="Tier 1 Omni-Tools">
+                                <option value="Hahne-Kedar OT-11">Hahne-Kedar OT-11</option>
+                                <option value="Elanus Hornet Interface">Elanus Hornet Interface</option>
+                                <option value="Rosenkov Patchline">Rosenkov Patchline</option>
+                            </optgroup>
+                            <optgroup label="Tier 2 Omni-Tools">
+                                <option value="Serrice Corelink Harness">Serrice Corelink Harness</option>
+                                <option value="Armax Tactical Uplink">Armax Tactical Uplink</option>
+                                <option value="Devlon Pathfinder Toolset">Devlon Pathfinder Toolset</option>
+                            </optgroup>
+                            <optgroup label="Tier 3 Omni-Tools">
+                                <option value="Ariake Phantom Suite">Ariake Phantom Suite</option>
+                                <option value="Kassa Vanguard Neural Link">Kassa Vanguard Neural Link</option>
+                                <option value="Elanus Sovereign Node Array">Elanus Sovereign Node Array</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="equipment-slot">
+                        <label for="biotic-amp">Biotic Amp:</label>
+                        <select id="biotic-amp" name="biotic-amp">
+                            <option value="">Select Biotic Amp...</option>
+                            <optgroup label="Tier 1 Biotic Amps">
+                                <option value="L1 Biotic Amp">L1 Biotic Amp</option>
+                                <option value="L2 Biotic Amp">L2 Biotic Amp</option>
+                                <option value="Elanus Nova Amp">Elanus Nova Amp</option>
+                                <option value="Ariake Pulse Amp">Ariake Pulse Amp</option>
+                                <option value="Harmonix Focus Amp">Harmonix Focus Amp</option>
+                            </optgroup>
+                            <optgroup label="Tier 2 Biotic Amps">
+                                <option value="L3 Biotic Amp">L3 Biotic Amp</option>
+                                <option value="L4 Biotic Amp">L4 Biotic Amp</option>
+                                <option value="Aldrin Catalyst Amp">Aldrin Catalyst Amp</option>
+                                <option value="Serrice Resonance Amp">Serrice Resonance Amp</option>
+                                <option value="Harmonix Surge Amp">Harmonix Surge Amp</option>
+                            </optgroup>
+                            <optgroup label="Tier 3 Biotic Amps">
+                                <option value="L5 Biotic Amp">L5 Biotic Amp</option>
+                                <option value="L6 Biotic Amp">L6 Biotic Amp</option>
+                                <option value="Rosenkov Kinetic Amp">Rosenkov Kinetic Amp</option>
+                                <option value="Serrice Overload Amp">Serrice Overload Amp</option>
+                                <option value="Harmonix Apex Amp">Harmonix Apex Amp</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equipment Info -->
+            <section class="equipment-info">
+                <h2>Equipment Information</h2>
+                <div class="info-grid">
+                    <div class="info-panel">
+                        <h3>Primary Weapon Info</h3>
+                        <div id="primary-weapon-info" class="info-content">
+                            Select a primary weapon to see its stats and traits.
+                        </div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Secondary Weapon Info</h3>
+                        <div id="secondary-weapon-info" class="info-content">
+                            Select a secondary weapon to see its stats and traits.
+                        </div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Armor Info</h3>
+                        <div id="armor-info" class="info-content">
+                            Select armor to see its protection values and special traits.
+                        </div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Omni-tool Info</h3>
+                        <div id="omni-tool-info" class="info-content">
+                            Select an omni tool to see its enhancement effects.
+                        </div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>Biotic Amp Info</h3>
+                        <div id="biotic-amp-info" class="info-content">
+                            Select a biotic amp to see its enhancement effects.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Powers -->
+            <section class="powers">
+                <h2>Powers</h2>
+                <div class="powers-grid">
+                    <div class="power-section">
+                        <h3>Biotic Powers</h3>
+                        <div class="power-slots">
+                            <div class="power-slot">
+                                <label for="biotic-power-1">Biotic Power 1:</label>
+                                <select id="biotic-power-1" name="biotic-power-1">
+                                    <option value="">Select Biotic Power...</option>
+                                    <option value="Barrier">Barrier</option>
+                                    <option value="Biotic Hammer">Biotic Hammer</option>
+                                    <option value="Biotic Slash">Biotic Slash</option>
+                                    <option value="Charge">Charge</option>
+                                    <option value="Dark Channel">Dark Channel</option>
+                                    <option value="Dominate">Dominate</option>
+                                    <option value="Lash">Lash</option>
+                                    <option value="Lift">Lift</option>
+                                    <option value="Nova">Nova</option>
+                                    <option value="Reave">Reave</option>
+                                    <option value="Shockwave">Shockwave</option>
+                                    <option value="Singularity">Singularity</option>
+                                    <option value="Slam">Slam</option>
+                                    <option value="Stasis">Stasis</option>
+                                    <option value="Throw">Throw</option>
+                                    <option value="Warp">Warp</option>
+                                </select>
+                                <div class="power-upgrade-controls">
+                                    <label>Power Level:</label>
+                                    <select id="biotic-power-1-level" name="biotic-power-1-level">
+                                        <option value="base">Base</option>
+                                        <option value="level5">Level 5</option>
+                                        <option value="level10">Level 10</option>
+                                        <option value="level15">Level 15</option>
+                                    </select>
+                                    <select id="biotic-power-1-upgrade" name="biotic-power-1-upgrade" style="display: none;">
+                                        <option value="">Select Upgrade...</option>
+                                    </select>
+                                </div>
+                                <div id="biotic-power-1-info" class="power-info">Select a power to see its details.</div>
+                            </div>
+                            <div class="power-slot">
+                                <label for="biotic-power-2">Biotic Power 2:</label>
+                                <select id="biotic-power-2" name="biotic-power-2">
+                                    <option value="">Select Biotic Power...</option>
+                                    <option value="Barrier">Barrier</option>
+                                    <option value="Biotic Hammer">Biotic Hammer</option>
+                                    <option value="Biotic Slash">Biotic Slash</option>
+                                    <option value="Charge">Charge</option>
+                                    <option value="Dark Channel">Dark Channel</option>
+                                    <option value="Dominate">Dominate</option>
+                                    <option value="Lash">Lash</option>
+                                    <option value="Lift">Lift</option>
+                                    <option value="Nova">Nova</option>
+                                    <option value="Reave">Reave</option>
+                                    <option value="Shockwave">Shockwave</option>
+                                    <option value="Singularity">Singularity</option>
+                                    <option value="Slam">Slam</option>
+                                    <option value="Stasis">Stasis</option>
+                                    <option value="Throw">Throw</option>
+                                    <option value="Warp">Warp</option>
+                                </select>
+                                <div class="power-upgrade-controls">
+                                    <label>Power Level:</label>
+                                    <select id="biotic-power-2-level" name="biotic-power-2-level">
+                                        <option value="base">Base</option>
+                                        <option value="level5">Level 5</option>
+                                        <option value="level10">Level 10</option>
+                                        <option value="level15">Level 15</option>
+                                    </select>
+                                    <select id="biotic-power-2-upgrade" name="biotic-power-2-upgrade" style="display: none;">
+                                        <option value="">Select Upgrade...</option>
+                                    </select>
+                                </div>
+                                <div id="biotic-power-2-info" class="power-info">Select a power to see its details.</div>
+                            </div>
+                            <div class="power-slot">
+                                <label for="biotic-power-3">Biotic Power 3:</label>
+                                <select id="biotic-power-3" name="biotic-power-3">
+                                    <option value="">Select Biotic Power...</option>
+                                    <option value="Barrier">Barrier</option>
+                                    <option value="Biotic Hammer">Biotic Hammer</option>
+                                    <option value="Biotic Slash">Biotic Slash</option>
+                                    <option value="Charge">Charge</option>
+                                    <option value="Dark Channel">Dark Channel</option>
+                                    <option value="Dominate">Dominate</option>
+                                    <option value="Lash">Lash</option>
+                                    <option value="Lift">Lift</option>
+                                    <option value="Nova">Nova</option>
+                                    <option value="Reave">Reave</option>
+                                    <option value="Shockwave">Shockwave</option>
+                                    <option value="Singularity">Singularity</option>
+                                    <option value="Slam">Slam</option>
+                                    <option value="Stasis">Stasis</option>
+                                    <option value="Throw">Throw</option>
+                                    <option value="Warp">Warp</option>
+                                </select>
+                                <div class="power-upgrade-controls">
+                                    <label>Power Level:</label>
+                                    <select id="biotic-power-3-level" name="biotic-power-3-level">
+                                        <option value="base">Base</option>
+                                        <option value="level5">Level 5</option>
+                                        <option value="level10">Level 10</option>
+                                        <option value="level15">Level 15</option>
+                                    </select>
+                                    <select id="biotic-power-3-upgrade" name="biotic-power-3-upgrade" style="display: none;">
+                                        <option value="">Select Upgrade...</option>
+                                    </select>
+                                </div>
+                                <div id="biotic-power-3-info" class="power-info">Select a power to see its details.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="power-section">
+                        <h3>Tech Powers</h3>
+                        <div class="power-slots">
+                            <div class="power-slot">
+                                <label for="tech-power-1">Tech Power 1:</label>
+                                <select id="tech-power-1" name="tech-power-1">
+                                    <option value="">Select Tech Power...</option>
+                                    <option value="AI Hacking">AI Hacking</option>
+                                    <option value="Combat Drone">Combat Drone</option>
+                                    <option value="Cryo Blast">Cryo Blast</option>
+                                    <option value="Electric Slash">Electric Slash</option>
+                                    <option value="Electrical Hammer">Electrical Hammer</option>
+                                    <option value="Energy Drain">Energy Drain</option>
+                                    <option value="Incinerate">Incinerate</option>
+                                    <option value="Overload">Overload</option>
+                                    <option value="Sabotage">Sabotage</option>
+                                    <option value="Sentry Turret">Sentry Turret</option>
+                                    <option value="Shield Boost">Shield Boost</option>
+                                    <option value="Snap Freeze">Snap Freeze</option>
+                                    <option value="Submission Net">Submission Net</option>
+                                    <option value="Tactical Scan">Tactical Scan</option>
+                                </select>
+                                <div class="power-upgrade-controls">
+                                    <label>Power Level:</label>
+                                    <select id="tech-power-1-level" name="tech-power-1-level">
+                                        <option value="base">Base</option>
+                                        <option value="level5">Level 5</option>
+                                        <option value="level10">Level 10</option>
+                                        <option value="level15">Level 15</option>
+                                    </select>
+                                    <select id="tech-power-1-upgrade" name="tech-power-1-upgrade" style="display: none;">
+                                        <option value="">Select Upgrade...</option>
+                                    </select>
+                                </div>
+                                <div id="tech-power-1-info" class="power-info">Select a power to see its details.</div>
+                            </div>
+                            <div class="power-slot">
+                                <label for="tech-power-2">Tech Power 2:</label>
+                                <select id="tech-power-2" name="tech-power-2">
+                                    <option value="">Select Tech Power...</option>
+                                    <option value="AI Hacking">AI Hacking</option>
+                                    <option value="Combat Drone">Combat Drone</option>
+                                    <option value="Cryo Blast">Cryo Blast</option>
+                                    <option value="Electric Slash">Electric Slash</option>
+                                    <option value="Electrical Hammer">Electrical Hammer</option>
+                                    <option value="Energy Drain">Energy Drain</option>
+                                    <option value="Incinerate">Incinerate</option>
+                                    <option value="Overload">Overload</option>
+                                    <option value="Sabotage">Sabotage</option>
+                                    <option value="Sentry Turret">Sentry Turret</option>
+                                    <option value="Shield Boost">Shield Boost</option>
+                                    <option value="Snap Freeze">Snap Freeze</option>
+                                    <option value="Submission Net">Submission Net</option>
+                                    <option value="Tactical Scan">Tactical Scan</option>
+                                </select>
+                                <div class="power-upgrade-controls">
+                                    <label>Power Level:</label>
+                                    <select id="tech-power-2-level" name="tech-power-2-level">
+                                        <option value="base">Base</option>
+                                        <option value="level5">Level 5</option>
+                                        <option value="level10">Level 10</option>
+                                        <option value="level15">Level 15</option>
+                                    </select>
+                                    <select id="tech-power-2-upgrade" name="tech-power-2-upgrade" style="display: none;">
+                                        <option value="">Select Upgrade...</option>
+                                    </select>
+                                </div>
+                                <div id="tech-power-2-info" class="power-info">Select a power to see its details.</div>
+                            </div>
+                            <div class="power-slot">
+                                <label for="tech-power-3">Tech Power 3:</label>
+                                <select id="tech-power-3" name="tech-power-3">
+                                    <option value="">Select Tech Power...</option>
+                                    <option value="AI Hacking">AI Hacking</option>
+                                    <option value="Combat Drone">Combat Drone</option>
+                                    <option value="Cryo Blast">Cryo Blast</option>
+                                    <option value="Electric Slash">Electric Slash</option>
+                                    <option value="Electrical Hammer">Electrical Hammer</option>
+                                    <option value="Energy Drain">Energy Drain</option>
+                                    <option value="Incinerate">Incinerate</option>
+                                    <option value="Overload">Overload</option>
+                                    <option value="Sabotage">Sabotage</option>
+                                    <option value="Sentry Turret">Sentry Turret</option>
+                                    <option value="Shield Boost">Shield Boost</option>
+                                    <option value="Snap Freeze">Snap Freeze</option>
+                                    <option value="Submission Net">Submission Net</option>
+                                    <option value="Tactical Scan">Tactical Scan</option>
+                                </select>
+                                <div class="power-upgrade-controls">
+                                    <label>Power Level:</label>
+                                    <select id="tech-power-3-level" name="tech-power-3-level">
+                                        <option value="base">Base</option>
+                                        <option value="level5">Level 5</option>
+                                        <option value="level10">Level 10</option>
+                                        <option value="level15">Level 15</option>
+                                    </select>
+                                    <select id="tech-power-3-upgrade" name="tech-power-3-upgrade" style="display: none;">
+                                        <option value="">Select Upgrade...</option>
+                                    </select>
+                                </div>
+                                <div id="tech-power-3-info" class="power-info">Select a power to see its details.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Power Tracking -->
+            <section class="power-tracking">
+                <h2>Power Tracking</h2>
+                <div class="power-grid">
+                    <div class="power-pool">
+                        <label for="biotic-energy">Biotic Energy (BE):</label>
+                        <div class="pool-controls">
+                            <input type="number" id="biotic-energy-current" name="biotic-energy-current" min="0" value="0" class="current">
+                            <span>/</span>
+                            <input type="number" id="biotic-energy-max" name="biotic-energy-max" min="0" value="0" class="max">
+                            <div class="pool-buttons">
+                                <button type="button" onclick="adjustPool('biotic-energy', 1)">+</button>
+                                <button type="button" onclick="adjustPool('biotic-energy', -1)">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="power-pool">
+                        <label for="tech-points">Tech Points (TP):</label>
+                        <div class="pool-controls">
+                            <input type="number" id="tech-points-current" name="tech-points-current" min="0" value="0" class="current">
+                            <span>/</span>
+                            <input type="number" id="tech-points-max" name="tech-points-max" min="0" value="0" class="max">
+                            <div class="pool-buttons">
+                                <button type="button" onclick="adjustPool('tech-points', 1)">+</button>
+                                <button type="button" onclick="adjustPool('tech-points', -1)">-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Combat Tracking -->
+            <section class="combat-tracking">
+                <h2>Combat Tracking</h2>
+                <div class="combat-grid">
+                    <div class="combat-stat">
+                        <label for="hp">Hit Points (HP):</label>
+                        <div class="pool-controls">
+                            <input type="number" id="hp-current" name="hp-current" min="0" value="0" class="current">
+                            <span>/</span>
+                            <input type="number" id="hp-max" name="hp-max" min="0" value="0" class="max">
+                            <div class="pool-buttons">
+                                <button type="button" onclick="adjustPool('hp', 1)">+</button>
+                                <button type="button" onclick="adjustPool('hp', -1)">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="combat-stat">
+                        <label for="kb">Kinetic Barriers (KB):</label>
+                        <div class="pool-controls">
+                            <input type="number" id="kb-current" name="kb-current" min="0" value="0" class="current">
+                            <span>/</span>
+                            <input type="number" id="kb-max" name="kb-max" min="0" value="0" class="max">
+                            <div class="pool-buttons">
+                                <button type="button" onclick="adjustPool('kb', 1)">+</button>
+                                <button type="button" onclick="adjustPool('kb', -1)">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="combat-stat">
+                        <label for="bb">Biotic Barriers (BB):</label>
+                        <div class="pool-controls">
+                            <input type="number" id="bb-current" name="bb-current" min="0" value="0" class="current">
+                            <span>/</span>
+                            <input type="number" id="bb-max" name="bb-max" min="0" value="0" class="max">
+                            <div class="pool-buttons">
+                                <button type="button" onclick="adjustPool('bb', 1)">+</button>
+                                <button type="button" onclick="adjustPool('bb', -1)">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="combat-stat">
+                        <label for="armor-value">Armor Value:</label>
+                        <div class="pool-controls">
+                            <input type="number" id="armor-value" name="armor-value" min="0" value="0" readonly class="armor-display">
+                        </div>
+                    </div>
+                    <div class="status-effects">
+                        <label for="status-effects">Status Effects:</label>
+                        <textarea id="status-effects" name="status-effects" rows="3" placeholder="List any active status effects..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Character Controls -->
+            <section class="controls">
+                <h3>Character Actions</h3>
+                <button type="button" onclick="saveCurrentCharacter()">Save Current Character</button>
+                <button type="button" onclick="clearCurrentCharacter()">Clear Current Character</button>
+                <button type="button" onclick="duplicateCharacter()">Duplicate Character</button>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('PWA: Service Worker registered successfully', registration.scope);
+
+                        // Show install prompt if available
+                        let deferredPrompt;
+                        window.addEventListener('beforeinstallprompt', (e) => {
+                            e.preventDefault();
+                            deferredPrompt = e;
+                            console.log('PWA: Install prompt available');
+                        });
+
+                        // Handle successful installation
+                        window.addEventListener('appinstalled', () => {
+                            console.log('PWA: App installed successfully');
+                            deferredPrompt = null;
+                        });
+                    })
+                    .catch((error) => {
+                        console.log('PWA: Service Worker registration failed', error);
+                    });
+            });
+        }
+
+        // Add to homescreen detection for iOS
+        function isRunningStandalone() {
+            return window.matchMedia('(display-mode: standalone)').matches ||
+                   window.navigator.standalone === true;
+        }
+
+        if (isRunningStandalone()) {
+            console.log('PWA: Running in standalone mode');
+            document.body.classList.add('pwa-standalone');
+        }
+
+        // Prevent zoom on double tap for better mobile experience
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>

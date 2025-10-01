@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start index.html)",
+      "Bash(start test.html)",
+      "Bash(start debug_focused.html)",
+      "Bash(start debug_upgrade_selection.html)",
+      "Bash(start minimal_test.html)",
+      "Bash(start direct_debug.html)",
+      "Bash(powershell:*)",
+      "Bash(copy icon-192.png icon-512.png)",
+      "Bash(dir:*)",
+      "Bash(start test_random.html)",
+      "Bash(start app.html)",
+      "Bash(copy app.html index.html)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(del nul)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
