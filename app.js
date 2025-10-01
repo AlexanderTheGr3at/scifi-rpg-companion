@@ -219,7 +219,7 @@ const weaponData = {
     // Assault Rifles
     'M-8 Avenger': {
         description: 'The M-8 Avenger is the standard-issue assault rifle of the Systems Alliance military. Proven in countless engagements across the galaxy, this versatile weapon offers dependable performance in all combat situations.',
-        effects: '• **Range:** 14 hexes\n• **Damage:** 1d6 + Combat\n• **Damage Type:** Kinetic\n• **Shots:** 2 (Soldier: 3)\n• **Thermal Clips:** 1 per mission\n• **Traits:** Reliable\n• **Cost:** 500 credits\n• **Rarity:** Standard',
+        effects: '• Range: 14 hexes\n• **Damage:** 1d6 + Combat\n• Damage Type: Kinetic\n• **Shots:** 2 (Soldier: 3)\n• **Thermal Clips:** 1 per mission\n• **Traits:** Reliable\n• Cost: 500 credits\n• **Rarity:** Standard',
         traits: {
             'Reliable': 'Reroll one failed attack roll per mission'
         }
@@ -765,7 +765,7 @@ const bioticPowersUpgradeData = {
         xpCost: 30,
         base: {
             description: 'You seize an enemy with biotic force and hurl them through the air.',
-            effects: '**Cost:** 3 BE | **Range:** 10 hexes | **Damage Type:** Biotic\n\n**Effect:** Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - Hurled up to 3 hexes in direction of your choice and **Knocked Prone**\n  - If target is currently **Lifted**, throwing distance increases to 5 hexes\n  - 1d6 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n• **On miss:** No effect\n\n**Special:**\n• Both target and any figure they collide with take collision damage\n• Collision damage is reduced by Armor\n• You choose the direction of the throw\n\n**Quick Cast Compatibility:**\n• Can be combined with other Tier 1 or Tier 2 powers using Quick Cast rules\n• Cost becomes 4 BE when Quick Cast\n• Both powers suffer -2 to hit when Quick Cast\n• Excellent for repositioning enemies before using area powers'
+            effects: 'Cost: 3 BE | Range: 10 hexes | Damage Type: Biotic\n\nEffect: Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - Hurled up to 3 hexes in direction of your choice and Knocked Prone\n  - If target is currently Lifted, throwing distance increases to 5 hexes\n  - 1d6 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n• On miss: No effect\n\nSpecial:\n• Both target and any figure they collide with take collision damage\n• Collision damage is reduced by Armor\n• You choose the direction of the throw\n\nQuick Cast Compatibility:\n• Can be combined with other Tier 1 or Tier 2 powers using Quick Cast rules\n• Cost becomes 4 BE when Quick Cast\n• Both powers suffer -2 to hit when Quick Cast\n• Excellent for repositioning enemies before using area powers'
         },
         level5: [
             {
@@ -773,14 +773,14 @@ const bioticPowersUpgradeData = {
                 cost: 5,
                 xpCost: 48,
                 description: 'Enhances collision force for increased damage.',
-                effects: '**Cost:** 5 BE | **Range:** 10 hexes\n\n**Effect:** You seize an enemy with biotic force and hurl them through the air with devastating impact. Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - Hurled up to 3 hexes in direction of your choice and **Knocked Prone**\n  - If target is currently **Lifted**, throwing distance increases to 5 hexes\n  - 1d8 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n• **On miss:** No effect\n\n**Special:**\n• Both target and any figure they collide with take enhanced collision damage\n• Collision damage is reduced by Armor\n• You choose the direction of the throw'
+                effects: 'Cost: 5 BE | Range: 10 hexes\n\nEffect: You seize an enemy with biotic force and hurl them through the air with devastating impact. Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - Hurled up to 3 hexes in direction of your choice and Knocked Prone\n  - If target is currently Lifted, throwing distance increases to 5 hexes\n  - 1d8 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n• On miss: No effect\n\nSpecial:\n• Both target and any figure they collide with take enhanced collision damage\n• Collision damage is reduced by Armor\n• You choose the direction of the throw'
             },
             {
                 name: 'Extended Throw',
                 cost: 5,
                 xpCost: 48,
                 description: 'Increases throwing range for better positioning options.',
-                effects: '**Cost:** 5 BE | **Range:** 10 hexes\n\n**Effect:** You seize an enemy with biotic force and hurl them across greater distances. Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - Hurled up to 5 hexes in direction of your choice and **Knocked Prone**\n  - If target is currently **Lifted**, throwing distance increases to 7 hexes\n  - 1d6 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n• **On miss:** No effect\n\n**Special:**\n• Both target and any figure they collide with take collision damage\n• Collision damage is reduced by Armor\n• Greater throwing distance creates more positioning opportunities'
+                effects: 'Cost: 5 BE | Range: 10 hexes\n\nEffect: You seize an enemy with biotic force and hurl them across greater distances. Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - Hurled up to 5 hexes in direction of your choice and Knocked Prone\n  - If target is currently Lifted, throwing distance increases to 7 hexes\n  - 1d6 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n• On miss: No effect\n\nSpecial:\n• Both target and any figure they collide with take collision damage\n• Collision damage is reduced by Armor\n• Greater throwing distance creates more positioning opportunities'
             }
         ],
         level10: [
@@ -789,14 +789,14 @@ const bioticPowersUpgradeData = {
                 cost: 8,
                 xpCost: 77,
                 description: 'Replaces Powerful Throw with chain collision effects.',
-                effects: '**Cost:** 8 BE | **Range:** 10 hexes\n\n**Effect:** You seize an enemy with biotic force and hurl them with explosive impact. Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - Hurled up to 3 hexes in direction of your choice and **Knocked Prone**\n  - If target is currently **Lifted**, throwing distance increases to 5 hexes\n  - 2d4 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n  - If target hits another figure, that figure is also **Knocked Prone** and pushed 1 hex away\n• **On miss:** No effect\n\n**Special:**\n• Both target and collision victim take full collision damage\n• Chain effects can disrupt multiple enemy positions\n• Collision damage is reduced by Armor'
+                effects: 'Cost: 8 BE | Range: 10 hexes\n\nEffect: You seize an enemy with biotic force and hurl them with explosive impact. Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - Hurled up to 3 hexes in direction of your choice and Knocked Prone\n  - If target is currently Lifted, throwing distance increases to 5 hexes\n  - 2d4 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n  - If target hits another figure, that figure is also Knocked Prone and pushed 1 hex away\n• On miss: No effect\n\nSpecial:\n• Both target and collision victim take full collision damage\n• Chain effects can disrupt multiple enemy positions\n• Collision damage is reduced by Armor'
             },
             {
                 name: 'Long Throw',
                 cost: 8,
                 xpCost: 77,
                 description: 'Replaces Extended Throw with debuffing collision effects.',
-                effects: '**Cost:** 8 BE | **Range:** 10 hexes\n\n**Effect:** You seize an enemy with biotic force and hurl them across vast distances. Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - Hurled up to 7 hexes in direction of your choice and **Knocked Prone**\n  - If target is currently **Lifted**, throwing distance increases to 9 hexes\n  - 1d6 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n  - **Staggered** for 1 turn after landing if they collide with anything\n• **On miss:** No effect\n\n**Special:**\n• Both target and any figure they collide with take collision damage\n• Collision damage is reduced by Armor\n• Staggered effect only applies if collision occurs'
+                effects: 'Cost: 8 BE | Range: 10 hexes\n\nEffect: You seize an enemy with biotic force and hurl them across vast distances. Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - Hurled up to 7 hexes in direction of your choice and Knocked Prone\n  - If target is currently Lifted, throwing distance increases to 9 hexes\n  - 1d6 + Biotics collision damage if they hit terrain, objects, or figures vs. All Enemy Types\n  - Staggered for 1 turn after landing if they collide with anything\n• On miss: No effect\n\nSpecial:\n• Both target and any figure they collide with take collision damage\n• Collision damage is reduced by Armor\n• Staggered effect only applies if collision occurs'
             }
         ],
         level15: {
@@ -804,7 +804,7 @@ const bioticPowersUpgradeData = {
             cost: 13,
             xpCost: 124,
             description: 'Adds explosive area effects to your Level 10 Throw.',
-            effects: '**Specialty Enhancement:** Adds to Level 10 Effect\n\n**Kinetic Mastery:** If the thrown target collides with another figure, a 1-hex radius biotic detonation deals 2d4 + Biotics damage to all enemies in the area vs. All Enemy Types. Enemies in the blast must make an Evasion Check vs. Biotic DC or be **Knocked Prone**.'
+            effects: 'Specialty Enhancement: Adds to Level 10 Effect\n\nKinetic Mastery: If the thrown target collides with another figure, a 1-hex radius biotic detonation deals 2d4 + Biotics damage to all enemies in the area vs. All Enemy Types. Enemies in the blast must make an Evasion Check vs. Biotic DC or be Knocked Prone.'
         }
     },
     'Warp': {
@@ -816,7 +816,7 @@ const bioticPowersUpgradeData = {
         xpCost: 70,
         base: {
             description: 'You hurl a dense biotic projectile that destabilizes molecular structure.',
-            effects: '**Cost:** 8 BE | **Range:** 14 hexes | **Damage Type:** Biotic\n\n**Effect:** Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - 2d4 + Biotics damage vs. All Enemy Types\n  - +1d6 barrier damage vs. Biotic Barriers\n  - 2 Armor Degradation (permanent)\n• **On miss:** No effect\n\n**Special:**\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0\n\n**Quick Cast Compatibility:**\n• Can be combined with other Tier 1 or Tier 2 powers using Quick Cast rules\n• Cost becomes 9 BE when Quick Cast\n• Both powers suffer -2 to hit when Quick Cast\n• Perfect for stripping armor before weapon attacks'
+            effects: 'Cost: 8 BE | Range: 14 hexes | Damage Type: Biotic\n\nEffect: Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - 2d4 + Biotics damage vs. All Enemy Types\n  - +1d6 barrier damage vs. Biotic Barriers\n  - 2 Armor Degradation (permanent)\n• On miss: No effect\n\nSpecial:\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0\n\nQuick Cast Compatibility:\n• Can be combined with other Tier 1 or Tier 2 powers using Quick Cast rules\n• Cost becomes 9 BE when Quick Cast\n• Both powers suffer -2 to hit when Quick Cast\n• Perfect for stripping armor before weapon attacks'
         },
         level5: [
             {
@@ -824,14 +824,14 @@ const bioticPowersUpgradeData = {
                 cost: 11,
                 xpCost: 48,
                 description: 'Replaces base effect with enhanced armor destruction.',
-                effects: '**Cost:** 11 BE | **Range:** 14 hexes\n\n**Effect:** Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - 2d6 + Biotics damage vs. All Enemy Types\n  - +1d8 barrier damage vs. Biotic Barriers\n  - 3 Armor Degradation (permanent)\n• **On miss:** No effect\n\n**Special:**\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
+                effects: 'Cost: 11 BE | Range: 14 hexes\n\nEffect: Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - 2d6 + Biotics damage vs. All Enemy Types\n  - +1d8 barrier damage vs. Biotic Barriers\n  - 3 Armor Degradation (permanent)\n• On miss: No effect\n\nSpecial:\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
             },
             {
                 name: 'Mass Tearing',
                 cost: 11,
                 xpCost: 48,
                 description: 'Replaces base effect with biotic vulnerability.',
-                effects: '**Cost:** 11 BE | **Range:** 14 hexes\n\n**Effect:** Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - 2d4 + Biotics damage vs. All Enemy Types\n  - +1d6 barrier damage vs. Biotic Barriers\n  - 2 Armor Degradation (permanent)\n  - -1 to all Evasion checks against Biotic abilities until end of your next turn\n• **On miss:** No effect\n\n**Special:**\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
+                effects: 'Cost: 11 BE | Range: 14 hexes\n\nEffect: Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - 2d4 + Biotics damage vs. All Enemy Types\n  - +1d6 barrier damage vs. Biotic Barriers\n  - 2 Armor Degradation (permanent)\n  - -1 to all Evasion checks against Biotic abilities until end of your next turn\n• On miss: No effect\n\nSpecial:\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
             }
         ],
         level10: [
@@ -840,14 +840,14 @@ const bioticPowersUpgradeData = {
                 cost: 16,
                 xpCost: 77,
                 description: 'Replaces Precision Collapse with maximum damage.',
-                effects: '**Cost:** 16 BE | **Range:** 14 hexes\n\n**Effect:** Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - 3d4 + Biotics damage vs. All Enemy Types\n  - +2d4 barrier damage vs. Biotic Barriers\n  - 3 Armor Degradation (permanent)\n• **On miss:** No effect\n\n**Special:**\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
+                effects: 'Cost: 16 BE | Range: 14 hexes\n\nEffect: Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - 3d4 + Biotics damage vs. All Enemy Types\n  - +2d4 barrier damage vs. Biotic Barriers\n  - 3 Armor Degradation (permanent)\n• On miss: No effect\n\nSpecial:\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
             },
             {
                 name: 'Biotic Unraveling',
                 cost: 16,
                 xpCost: 77,
                 description: 'Replaces Mass Tearing with extended vulnerability.',
-                effects: '**Cost:** 16 BE | **Range:** 14 hexes\n\n**Effect:** Make a Biotics vs. Evasion attack roll:\n• **On hit target takes:**\n  - 2d4 + Biotics damage vs. All Enemy Types\n  - +1d6 barrier damage vs. Biotic Barriers\n  - 2 Armor Degradation (permanent)\n  - -2 to all Evasion checks vs. Biotic abilities for 2 full rounds\n• **On miss:** No effect\n\n**Special:**\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
+                effects: 'Cost: 16 BE | Range: 14 hexes\n\nEffect: Make a Biotics vs. Evasion attack roll:\n• On hit target takes:\n  - 2d4 + Biotics damage vs. All Enemy Types\n  - +1d6 barrier damage vs. Biotic Barriers\n  - 2 Armor Degradation (permanent)\n  - -2 to all Evasion checks vs. Biotic abilities for 2 full rounds\n• On miss: No effect\n\nSpecial:\n• Damage is reduced by Armor\n• Biotic Barriers block the Armor Degradation effect but take all damage normally\n• Armor Degradation is permanent for the mission and stacks with multiple hits\n• Cannot reduce armor below 0'
             }
         ],
         level15: {
@@ -855,7 +855,7 @@ const bioticPowersUpgradeData = {
             cost: 24,
             xpCost: 124,
             description: 'Enhances your Level 10 Warp with ultimate destructive power.',
-            effects: '**Specialty Enhancement:** Adds to Level 10 Effect\n\n**Warp Mastery:** Damage increases to 4d4 + Biotics and armor reduction increases to 4 Armor Degradation (permanent). Additionally, choose one enhancement:\n• **Option A:** If target is reduced to 0 HP, adjacent enemies take 1d8 + Biotics Armor-bypassing damage\n• **Option B:** Target suffers -2 to Biotic Evasion for 3 rounds while all enemies within 3 hexes suffer -1 to Biotic Evasion for 2 rounds and are **Slowed** for 1 round'
+            effects: 'Specialty Enhancement: Adds to Level 10 Effect\n\nWarp Mastery: Damage increases to 4d4 + Biotics and armor reduction increases to 4 Armor Degradation (permanent). Additionally, choose one enhancement:\n• Option A: If target is reduced to 0 HP, adjacent enemies take 1d8 + Biotics Armor-bypassing damage\n• Option B: Target suffers -2 to Biotic Evasion for 3 rounds while all enemies within 3 hexes suffer -1 to Biotic Evasion for 2 rounds and are Slowed for 1 round'
         }
     }
 };
@@ -870,7 +870,7 @@ const techPowersUpgradeData = {
         xpCost: 30,
         base: {
             description: 'You discharge a concentrated electromagnetic pulse that overloads technological systems.',
-            effects: '**Cost:** 3 TP | **Range:** 14 hexes | **Damage Type:** Electrical\n\n**Effect:** Make a Tech vs. Evasion attack roll:\n• **On hit target takes:**\n  - 1d4+4+Tech electrical damage vs. All Enemy Types\n  - +2d4 electrical damage vs. Kinetic Barriers\n• **On miss:** No effect\n\n**Special:**\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• Synthetic enemies are **Stunned** for 1 turn if reduced to 0 Kinetic Barriers by this attack\n\n**Quick Cast Compatibility:**\n• Can be combined with other Tier 1 or Tier 2 powers using Quick Cast rules\n• Cost becomes 4 TP when Quick Cast\n• Both powers suffer -2 to hit when Quick Cast\n• Excellent setup power - strip barriers then follow with other abilities'
+            effects: 'Cost: 3 TP | Range: 14 hexes | Damage Type: Electrical\n\nEffect: Make a Tech vs. Evasion attack roll:\n• On hit target takes:\n  - 1d4+4+Tech electrical damage vs. All Enemy Types\n  - +2d4 electrical damage vs. Kinetic Barriers\n• On miss: No effect\n\nSpecial:\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• Synthetic enemies are Stunned for 1 turn if reduced to 0 Kinetic Barriers by this attack\n\nQuick Cast Compatibility:\n• Can be combined with other Tier 1 or Tier 2 powers using Quick Cast rules\n• Cost becomes 4 TP when Quick Cast\n• Both powers suffer -2 to hit when Quick Cast\n• Excellent setup power - strip barriers then follow with other abilities'
         },
         level5: [
             {
@@ -878,14 +878,14 @@ const techPowersUpgradeData = {
                 cost: 5,
                 xpCost: 48,
                 description: 'Replaces base effect with enhanced version that affects organic nervous systems.',
-                effects: '**Cost:** 5 TP | **Range:** 14 hexes\n\n**Effect:** You discharge a concentrated electromagnetic pulse that overloads technological and biological systems. Make a Tech vs. Evasion attack roll:\n• **On hit target takes:**\n  - 1d4+6+Tech electrical damage vs. All Enemy Types\n  - +2d4 electrical damage vs. Kinetic Barriers\n• **On miss:** No effect\n\n**Special:**\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• All enemies are **Stunned** for 1 turn if reduced to 0 Kinetic Barriers by this attack\n• Organic enemies with cybernetic implants take +1d4 damage'
+                effects: 'Cost: 5 TP | Range: 14 hexes\n\nEffect: You discharge a concentrated electromagnetic pulse that overloads technological and biological systems. Make a Tech vs. Evasion attack roll:\n• On hit target takes:\n  - 1d4+6+Tech electrical damage vs. All Enemy Types\n  - +2d4 electrical damage vs. Kinetic Barriers\n• On miss: No effect\n\nSpecial:\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• All enemies are Stunned for 1 turn if reduced to 0 Kinetic Barriers by this attack\n• Organic enemies with cybernetic implants take +1d4 damage'
             },
             {
                 name: 'Improved Overload',
                 cost: 5,
                 xpCost: 48,
                 description: 'Replaces base effect with increased shield disruption capability.',
-                effects: '**Cost:** 5 TP | **Range:** 14 hexes\n\n**Effect:** You discharge a concentrated electromagnetic pulse that overloads technological systems. Make a Tech vs. Evasion attack roll:\n• **On hit target takes:**\n  - 1d4+4+Tech electrical damage vs. All Enemy Types\n  - +3d4 electrical damage vs. Kinetic Barriers\n• **On miss:** No effect\n\n**Special:**\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• Synthetic enemies are **Stunned** for 2 turns if reduced to 0 Kinetic Barriers by this attack'
+                effects: 'Cost: 5 TP | Range: 14 hexes\n\nEffect: You discharge a concentrated electromagnetic pulse that overloads technological systems. Make a Tech vs. Evasion attack roll:\n• On hit target takes:\n  - 1d4+4+Tech electrical damage vs. All Enemy Types\n  - +3d4 electrical damage vs. Kinetic Barriers\n• On miss: No effect\n\nSpecial:\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• Synthetic enemies are Stunned for 2 turns if reduced to 0 Kinetic Barriers by this attack'
             }
         ],
         level10: [
@@ -894,14 +894,14 @@ const techPowersUpgradeData = {
                 cost: 8,
                 xpCost: 77,
                 description: 'Replaces Neural Shock with superior electromagnetic disruption.',
-                effects: '**Cost:** 8 TP | **Range:** 14 hexes\n\n**Effect:** You discharge a concentrated electromagnetic pulse that overloads technological and biological systems. Make a Tech vs. Evasion attack roll:\n• **On hit target takes:**\n  - 1d4+8+Tech electrical damage vs. All Enemy Types\n  - +3d4 electrical damage vs. Kinetic Barriers\n• **On miss:** No effect\n\n**Special:**\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• All enemies are **Stunned** for 2 turns if reduced to 0 Kinetic Barriers by this attack\n• Organic enemies with cybernetic implants take +2d4 damage'
+                effects: 'Cost: 8 TP | Range: 14 hexes\n\nEffect: You discharge a concentrated electromagnetic pulse that overloads technological and biological systems. Make a Tech vs. Evasion attack roll:\n• On hit target takes:\n  - 1d4+8+Tech electrical damage vs. All Enemy Types\n  - +3d4 electrical damage vs. Kinetic Barriers\n• On miss: No effect\n\nSpecial:\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• All enemies are Stunned for 2 turns if reduced to 0 Kinetic Barriers by this attack\n• Organic enemies with cybernetic implants take +2d4 damage'
             },
             {
                 name: 'Perfect Overload',
                 cost: 8,
                 xpCost: 77,
                 description: 'Replaces Improved Overload with maximum shield disruption capability.',
-                effects: '**Cost:** 8 TP | **Range:** 14 hexes\n\n**Effect:** You discharge a concentrated electromagnetic pulse that overloads technological systems. Make a Tech vs. Evasion attack roll:\n• **On hit target takes:**\n  - 1d4+4+Tech electrical damage vs. All Enemy Types\n  - +4d4 electrical damage vs. Kinetic Barriers\n• **On miss:** No effect\n\n**Special:**\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• Synthetic enemies are **Stunned** for 3 turns if reduced to 0 Kinetic Barriers by this attack\n• Automatically destroys any Kinetic Barriers with 15 or fewer points remaining'
+                effects: 'Cost: 8 TP | Range: 14 hexes\n\nEffect: You discharge a concentrated electromagnetic pulse that overloads technological systems. Make a Tech vs. Evasion attack roll:\n• On hit target takes:\n  - 1d4+4+Tech electrical damage vs. All Enemy Types\n  - +4d4 electrical damage vs. Kinetic Barriers\n• On miss: No effect\n\nSpecial:\n• Electrical damage type\n• Enhanced effectiveness against technological shield systems\n• Synthetic enemies are Stunned for 3 turns if reduced to 0 Kinetic Barriers by this attack\n• Automatically destroys any Kinetic Barriers with 15 or fewer points remaining'
             }
         ],
         level15: {
@@ -909,7 +909,7 @@ const techPowersUpgradeData = {
             cost: 12,
             xpCost: 124,
             description: 'Adds arcing electrical discharge to your Level 10 effect.',
-            effects: '**Specialty Enhancement:** Adds to Level 10 Effect\n\n**Chain Overload:** When you hit with your primary attack, electricity automatically chains to 3 additional enemies within 4 hexes of the original target. Each chained target takes your Level 10 Overload effect with half the bonus dice (+2d4 vs. Kinetic Barriers instead of +3d4 or +4d4) but keeps all flat bonuses and the Tech modifier.'
+            effects: 'Specialty Enhancement: Adds to Level 10 Effect\n\nChain Overload: When you hit with your primary attack, electricity automatically chains to 3 additional enemies within 4 hexes of the original target. Each chained target takes your Level 10 Overload effect with half the bonus dice (+2d4 vs. Kinetic Barriers instead of +3d4 or +4d4) but keeps all flat bonuses and the Tech modifier.'
         }
     }
 };
@@ -2789,7 +2789,7 @@ function getUpgradeButtons(powerId, powerName, powerType) {
     let html = '';
 
     // Level 5 upgrades
-    if (!currentUpgrades.level5 && upgradeData.level5) {
+    if (currentUpgrades.level5 === undefined && upgradeData.level5) {
         html += `<div class="upgrade-tier">
             <h6>Level 5 Upgrades (Choose 1):</h6>
             <div class="upgrade-options">`;
@@ -2804,7 +2804,7 @@ function getUpgradeButtons(powerId, powerName, powerType) {
     }
 
     // Level 10 upgrades (only if level 5 is selected)
-    if (currentUpgrades.level5 && !currentUpgrades.level10 && upgradeData.level10) {
+    if (currentUpgrades.level5 !== undefined && currentUpgrades.level10 === undefined && upgradeData.level10) {
         html += `<div class="upgrade-tier">
             <h6>Level 10 Upgrades (Choose 1):</h6>
             <div class="upgrade-options">`;
@@ -2819,7 +2819,7 @@ function getUpgradeButtons(powerId, powerName, powerType) {
     }
 
     // Level 15 upgrade (only if level 10 is selected)
-    if (currentUpgrades.level10 && !currentUpgrades.level15 && upgradeData.level15) {
+    if (currentUpgrades.level10 !== undefined && !currentUpgrades.level15 && upgradeData.level15) {
         html += `<div class="upgrade-tier">
             <h6>Level 15 Specialty Upgrade:</h6>
             <div class="upgrade-options">
@@ -2836,11 +2836,11 @@ function getUpgradeButtons(powerId, powerName, powerType) {
     if (Object.keys(currentUpgrades).length > 0) {
         html += `<div class="current-upgrades">
             <h6>Current Upgrades:</h6>`;
-        if (currentUpgrades.level5) {
+        if (currentUpgrades.level5 !== undefined) {
             const upgrade = upgradeData.level5[currentUpgrades.level5];
             html += `<div class="upgrade-active">${upgrade.name}</div>`;
         }
-        if (currentUpgrades.level10) {
+        if (currentUpgrades.level10 !== undefined) {
             const upgrade = upgradeData.level10[currentUpgrades.level10];
             html += `<div class="upgrade-active">${upgrade.name}</div>`;
         }
