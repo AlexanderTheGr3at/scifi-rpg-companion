@@ -11,6 +11,9 @@ let activeTechPowers = [];
 let bioticPowerIdCounter = 1;
 let techPowerIdCounter = 1;
 
+// Power upgrade tracking
+let powerUpgrades = {}; // { powerId: { level5: 'upgradeName', level10: 'upgradeName', level15: true } }
+
 // Base attributes tracking (without bonuses)
 let baseAttributes = {
     health: 0,
@@ -751,6 +754,167 @@ const bioticAmpData = {
     }
 };
 
+// Enhanced power data with upgrade trees
+const bioticPowersUpgradeData = {
+    'Throw': {
+        tier: 1,
+        baseCost: 3, // BE
+        range: 10,
+        damageType: 'Biotic',
+        targeting: 'Single enemy within line of sight',
+        xpCost: 30,
+        base: {
+            description: 'A basic biotic attack that hurls enemies away using mass effect fields.',
+            effects: '• **Cost:** 3 BE\n• **Range:** 10 hexes\n• **Effect:** Biotics vs. Evasion attack\n• **On hit:** Hurled 3 hexes, Knocked Prone\n• **If Lifted:** 5 hexes throwing distance\n• **Collision:** 1d6 + Biotics damage'
+        },
+        level5: [
+            {
+                name: 'Powerful Throw',
+                cost: 5,
+                xpCost: 48,
+                description: 'Enhances collision force for increased damage.',
+                effects: '• **Cost:** 5 BE\n• **Enhanced collision:** 1d8 + Biotics damage\n• **Same range and effects as base**'
+            },
+            {
+                name: 'Extended Throw',
+                cost: 5,
+                xpCost: 48,
+                description: 'Increases throwing range for better positioning options.',
+                effects: '• **Cost:** 5 BE\n• **Range:** 5 hexes (7 if Lifted)\n• **Better positioning opportunities**'
+            }
+        ],
+        level10: [
+            {
+                name: 'Explosive Throw',
+                cost: 8,
+                xpCost: 77,
+                description: 'Replaces Powerful Throw with chain collision effects.',
+                effects: '• **Cost:** 8 BE\n• **Damage:** 2d4 + Biotics\n• **Chain effect:** Hit target also Knocked Prone and pushed 1 hex'
+            },
+            {
+                name: 'Long Throw',
+                cost: 8,
+                xpCost: 77,
+                description: 'Replaces Extended Throw with debuffing collision effects.',
+                effects: '• **Cost:** 8 BE\n• **Range:** 7 hexes (9 if Lifted)\n• **Staggered for 1 turn** if collision occurs'
+            }
+        ],
+        level15: {
+            name: 'Kinetic Mastery',
+            cost: 13,
+            xpCost: 124,
+            description: 'Adds explosive area effects to your Level 10 Throw.',
+            effects: '• **Area detonation:** 1-hex radius on collision\n• **Blast damage:** 2d4 + Biotics to all enemies\n• **Knock Prone:** Evasion Check vs. Biotic DC required'
+        }
+    },
+    'Warp': {
+        tier: 2,
+        baseCost: 8,
+        range: 14,
+        damageType: 'Biotic',
+        targeting: 'Single enemy within line of sight',
+        xpCost: 70,
+        base: {
+            description: 'Advanced biotic power that destabilizes target\'s mass effect fields.',
+            effects: '• **Cost:** 8 BE\n• **Range:** 14 hexes\n• **Damage:** 2d4 + Biotics\n• **vs. Biotic Barriers:** +1d6 damage\n• **Armor Degradation:** 2 permanent'
+        },
+        level5: [
+            {
+                name: 'Precision Collapse',
+                cost: 11,
+                xpCost: 48,
+                description: 'Enhanced armor destruction.',
+                effects: '• **Damage:** 2d6 + Biotics\n• **vs. Biotic Barriers:** +1d8 damage\n• **Armor Degradation:** 3 permanent'
+            },
+            {
+                name: 'Mass Tearing',
+                cost: 11,
+                xpCost: 48,
+                description: 'Adds biotic vulnerability.',
+                effects: '• **Base damage and degradation**\n• **Biotic vulnerability:** -1 to Evasion vs. Biotics until end of next turn'
+            }
+        ],
+        level10: [
+            {
+                name: 'Annihilation Field',
+                cost: 16,
+                xpCost: 77,
+                description: 'Maximum damage potential.',
+                effects: '• **Damage:** 3d4 + Biotics\n• **vs. Biotic Barriers:** +2d4 damage\n• **Armor Degradation:** 3 permanent'
+            },
+            {
+                name: 'Biotic Unraveling',
+                cost: 16,
+                xpCost: 77,
+                description: 'Extended vulnerability effects.',
+                effects: '• **Extended vulnerability:** -2 to Biotic Evasion for 2 full rounds\n• **Base damage and degradation**'
+            }
+        ],
+        level15: {
+            name: 'Warp Mastery',
+            cost: 24,
+            xpCost: 124,
+            description: 'Ultimate destructive power with area effects.',
+            effects: '• **Damage:** 4d4 + Biotics\n• **Armor Degradation:** 4 permanent\n• **On kill:** Adjacent enemies take 1d8 + Biotics armor-bypassing damage'
+        }
+    }
+};
+
+const techPowersUpgradeData = {
+    'Overload': {
+        tier: 1,
+        baseCost: 3,
+        range: 14,
+        damageType: 'Electrical',
+        targeting: 'Single enemy within line of sight',
+        xpCost: 30,
+        base: {
+            description: 'Concentrated electromagnetic pulse that overloads technological systems.',
+            effects: '• **Cost:** 3 TP\n• **Range:** 14 hexes\n• **Damage:** 1d4+4+Tech electrical\n• **vs. Kinetic Barriers:** +2d4 electrical\n• **Stun synthetics:** 1 turn if barriers reduced to 0'
+        },
+        level5: [
+            {
+                name: 'Neural Shock',
+                cost: 5,
+                xpCost: 48,
+                description: 'Affects organic nervous systems.',
+                effects: '• **Damage:** 1d4+6+Tech\n• **Stuns all enemies** when barriers reduced to 0\n• **Cybernetic bonus:** +1d4 vs. organic enemies with implants'
+            },
+            {
+                name: 'Improved Overload',
+                cost: 5,
+                xpCost: 48,
+                description: 'Increased shield disruption capability.',
+                effects: '• **vs. Kinetic Barriers:** +3d4 electrical\n• **Extended stun:** 2 turns for synthetics\n• **Base damage unchanged**'
+            }
+        ],
+        level10: [
+            {
+                name: 'Advanced Neural Shock',
+                cost: 8,
+                xpCost: 77,
+                description: 'Superior electromagnetic disruption.',
+                effects: '• **Damage:** 1d4+8+Tech\n• **vs. Kinetic Barriers:** +3d4\n• **Stun duration:** 2 turns for all\n• **Cybernetic bonus:** +2d4'
+            },
+            {
+                name: 'Perfect Overload',
+                cost: 8,
+                xpCost: 77,
+                description: 'Maximum shield disruption capability.',
+                effects: '• **vs. Kinetic Barriers:** +4d4\n• **Stun duration:** 3 turns for synthetics\n• **Auto-destroy:** Barriers with ≤15 points'
+            }
+        ],
+        level15: {
+            name: 'Chain Overload',
+            cost: 12,
+            xpCost: 124,
+            description: 'Arcing electrical discharge to multiple targets.',
+            effects: '• **Chain to 3 enemies** within 4 hexes of target\n• **Chain damage:** Half bonus dice but full flat bonuses\n• **All effects apply** to chained targets'
+        }
+    }
+};
+
+// Legacy power data for compatibility
 const bioticPowersData = {
     // Offensive Powers
     'Throw': {
@@ -1530,6 +1694,7 @@ function saveCurrentCharacterToMemory() {
         // Powers
         bioticPowers: [...activeBioticPowers],
         techPowers: [...activeTechPowers],
+        powerUpgrades: { ...powerUpgrades },
 
         // Base attributes (without class/race bonuses)
         baseAttributes: { ...baseAttributes }
@@ -1582,6 +1747,7 @@ function loadCharacterFromMemory(characterIndex) {
     // Load powers
     activeBioticPowers = data.bioticPowers || [];
     activeTechPowers = data.techPowers || [];
+    powerUpgrades = data.powerUpgrades || {};
     updateBioticPowersDisplay();
     updateTechPowersDisplay();
 
@@ -1663,6 +1829,7 @@ function clearAllCharacterData() {
     // Clear powers
     activeBioticPowers = [];
     activeTechPowers = [];
+    powerUpgrades = {};
     updateBioticPowersDisplay();
     updateTechPowersDisplay();
 
@@ -2489,14 +2656,26 @@ function addBioticPower() {
         return; // Already has this power
     }
 
+    // Use upgrade data if available, otherwise fall back to legacy data
+    const upgradeData = bioticPowersUpgradeData[powerName];
+    const legacyData = bioticPowersData[powerName];
+
     const power = {
         id: bioticPowerIdCounter++,
         name: powerName,
-        description: bioticPowersData[powerName]?.description || '',
-        effects: bioticPowersData[powerName]?.effects || ''
+        type: 'biotic',
+        hasUpgrades: !!upgradeData,
+        description: upgradeData?.base.description || legacyData?.description || '',
+        effects: upgradeData?.base.effects || legacyData?.effects || ''
     };
 
     activeBioticPowers.push(power);
+
+    // Initialize upgrade tracking for this power
+    if (upgradeData) {
+        powerUpgrades[power.id] = {};
+    }
+
     updateBioticPowersDisplay();
     autoSaveCharacter();
 
@@ -2513,14 +2692,26 @@ function addTechPower() {
         return; // Already has this power
     }
 
+    // Use upgrade data if available, otherwise fall back to legacy data
+    const upgradeData = techPowersUpgradeData[powerName];
+    const legacyData = techPowersData[powerName];
+
     const power = {
         id: techPowerIdCounter++,
         name: powerName,
-        description: techPowersData[powerName]?.description || '',
-        effects: techPowersData[powerName]?.effects || ''
+        type: 'tech',
+        hasUpgrades: !!upgradeData,
+        description: upgradeData?.base.description || legacyData?.description || '',
+        effects: upgradeData?.base.effects || legacyData?.effects || ''
     };
 
     activeTechPowers.push(power);
+
+    // Initialize upgrade tracking for this power
+    if (upgradeData) {
+        powerUpgrades[power.id] = {};
+    }
+
     updateTechPowersDisplay();
     autoSaveCharacter();
 
@@ -2563,12 +2754,10 @@ function updateBioticPowersDisplay() {
     if (noMessage) noMessage.style.display = 'none';
 
     container.innerHTML = activeBioticPowers.map(power => `
-        <div class="power-item" data-power-id="${power.id}">
+        <div class="power-item ${power.type === 'class' ? 'class-power' : ''}" data-power-id="${power.id}">
             <div class="power-header">
-                <h4 class="power-name">${power.name}</h4>
-                <button class="remove-power-btn" onclick="removeBioticPower(${power.id})" title="Remove Power">
-                    ×
-                </button>
+                <h4 class="power-name">${power.name}${power.type === 'class' ? ' <span class="class-power-badge">(Class Power)</span>' : ''}</h4>
+                ${power.type !== 'class' ? `<button class="remove-power-btn" onclick="removeBioticPower(${power.id})" title="Remove Power">×</button>` : ''}
             </div>
             <div class="power-content">
                 <div class="power-description">
@@ -2579,9 +2768,126 @@ function updateBioticPowersDisplay() {
                     <strong>Effects:</strong>
                     <p>${power.effects.replace(/\n/g, '<br>')}</p>
                 </div>
+                ${power.hasUpgrades ? `
+                    <div class="power-upgrades">
+                        <strong>Upgrades Available:</strong>
+                        <div class="upgrade-controls">
+                            ${getUpgradeButtons(power.id, power.name, 'biotic')}
+                        </div>
+                    </div>
+                ` : ''}
             </div>
         </div>
     `).join('');
+}
+
+function getUpgradeButtons(powerId, powerName, powerType) {
+    const upgradeData = powerType === 'biotic' ? bioticPowersUpgradeData[powerName] : techPowersUpgradeData[powerName];
+    if (!upgradeData) return '';
+
+    const currentUpgrades = powerUpgrades[powerId] || {};
+    let html = '';
+
+    // Level 5 upgrades
+    if (!currentUpgrades.level5 && upgradeData.level5) {
+        html += `<div class="upgrade-tier">
+            <h6>Level 5 Upgrades (Choose 1):</h6>
+            <div class="upgrade-options">`;
+        upgradeData.level5.forEach((upgrade, index) => {
+            html += `<button class="upgrade-btn" onclick="selectUpgrade(${powerId}, 'level5', ${index}, '${powerType}')">
+                <strong>${upgrade.name}</strong><br>
+                <small>${upgrade.description}</small><br>
+                <em>Cost: ${upgrade.cost} ${powerType === 'biotic' ? 'BE' : 'TP'}, XP: ${upgrade.xpCost}</em>
+            </button>`;
+        });
+        html += `</div></div>`;
+    }
+
+    // Level 10 upgrades (only if level 5 is selected)
+    if (currentUpgrades.level5 && !currentUpgrades.level10 && upgradeData.level10) {
+        html += `<div class="upgrade-tier">
+            <h6>Level 10 Upgrades (Choose 1):</h6>
+            <div class="upgrade-options">`;
+        upgradeData.level10.forEach((upgrade, index) => {
+            html += `<button class="upgrade-btn" onclick="selectUpgrade(${powerId}, 'level10', ${index}, '${powerType}')">
+                <strong>${upgrade.name}</strong><br>
+                <small>${upgrade.description}</small><br>
+                <em>Cost: ${upgrade.cost} ${powerType === 'biotic' ? 'BE' : 'TP'}, XP: ${upgrade.xpCost}</em>
+            </button>`;
+        });
+        html += `</div></div>`;
+    }
+
+    // Level 15 upgrade (only if level 10 is selected)
+    if (currentUpgrades.level10 && !currentUpgrades.level15 && upgradeData.level15) {
+        html += `<div class="upgrade-tier">
+            <h6>Level 15 Specialty Upgrade:</h6>
+            <div class="upgrade-options">
+                <button class="upgrade-btn specialty" onclick="selectUpgrade(${powerId}, 'level15', 0, '${powerType}')">
+                    <strong>${upgradeData.level15.name}</strong><br>
+                    <small>${upgradeData.level15.description}</small><br>
+                    <em>Cost: ${upgradeData.level15.cost} ${powerType === 'biotic' ? 'BE' : 'TP'}, XP: ${upgradeData.level15.xpCost}</em>
+                </button>
+            </div>
+        </div>`;
+    }
+
+    // Show current upgrades
+    if (Object.keys(currentUpgrades).length > 0) {
+        html += `<div class="current-upgrades">
+            <h6>Current Upgrades:</h6>`;
+        if (currentUpgrades.level5) {
+            const upgrade = upgradeData.level5[currentUpgrades.level5];
+            html += `<div class="upgrade-active">${upgrade.name}</div>`;
+        }
+        if (currentUpgrades.level10) {
+            const upgrade = upgradeData.level10[currentUpgrades.level10];
+            html += `<div class="upgrade-active">${upgrade.name}</div>`;
+        }
+        if (currentUpgrades.level15) {
+            html += `<div class="upgrade-active">${upgradeData.level15.name} (Specialty)</div>`;
+        }
+        html += `</div>`;
+    }
+
+    return html;
+}
+
+function selectUpgrade(powerId, tier, upgradeIndex, powerType) {
+    const power = powerType === 'biotic'
+        ? activeBioticPowers.find(p => p.id === powerId)
+        : activeTechPowers.find(p => p.id === powerId);
+
+    if (!power) return;
+
+    const upgradeData = powerType === 'biotic' ? bioticPowersUpgradeData[power.name] : techPowersUpgradeData[power.name];
+    if (!upgradeData) return;
+
+    // Update the upgrade tracking
+    if (!powerUpgrades[powerId]) {
+        powerUpgrades[powerId] = {};
+    }
+
+    if (tier === 'level15') {
+        powerUpgrades[powerId].level15 = true;
+        // Update power effects to include level 15 upgrade
+        const level10Upgrade = upgradeData.level10[powerUpgrades[powerId].level10];
+        power.effects = level10Upgrade.effects + '\n\n**Level 15 Specialty:**\n' + upgradeData.level15.effects;
+    } else {
+        powerUpgrades[powerId][tier] = upgradeIndex;
+        // Update power effects to show selected upgrade
+        const selectedUpgrade = upgradeData[tier][upgradeIndex];
+        power.effects = selectedUpgrade.effects;
+    }
+
+    // Update display
+    if (powerType === 'biotic') {
+        updateBioticPowersDisplay();
+    } else {
+        updateTechPowersDisplay();
+    }
+
+    autoSaveCharacter();
 }
 
 function updateTechPowersDisplay() {
@@ -2614,6 +2920,14 @@ function updateTechPowersDisplay() {
                     <strong>Effects:</strong>
                     <p>${power.effects.replace(/\n/g, '<br>')}</p>
                 </div>
+                ${power.hasUpgrades && power.type !== 'class' ? `
+                    <div class="power-upgrades">
+                        <strong>Upgrades Available:</strong>
+                        <div class="upgrade-controls">
+                            ${getUpgradeButtons(power.id, power.name, 'tech')}
+                        </div>
+                    </div>
+                ` : ''}
             </div>
         </div>
     `).join('');
