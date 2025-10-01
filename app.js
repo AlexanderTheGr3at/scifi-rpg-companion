@@ -1057,6 +1057,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
     setupEventListeners();
     loadDiceHistory();
+    setupAutoResizeTextareas();
 });
 
 function initializeApp() {
@@ -2214,6 +2215,9 @@ function updateClassDescription() {
         effectsField.value = data.effects;
         descFieldContainer.style.display = 'block';
         effectsFieldContainer.style.display = 'block';
+
+        // Auto-resize textareas
+        autoResizeTextarea(effectsField);
     } else {
         descFieldContainer.style.display = 'none';
         effectsFieldContainer.style.display = 'none';
@@ -2237,6 +2241,9 @@ function updateRaceDescription() {
         effectsField.value = data.effects;
         descFieldContainer.style.display = 'block';
         effectsFieldContainer.style.display = 'block';
+
+        // Auto-resize textareas
+        autoResizeTextarea(effectsField);
     } else {
         descFieldContainer.style.display = 'none';
         effectsFieldContainer.style.display = 'none';
@@ -2304,6 +2311,9 @@ function updateEquipmentDescription(equipmentType) {
 
         effectsField.value = effectsText;
         effectsFieldContainer.style.display = 'block';
+
+        // Auto-resize the textarea after updating content
+        autoResizeTextarea(effectsField);
 
         // Special handling for armor to update armor-value and barrier fields
         if (equipmentType === 'armor') {
@@ -2931,6 +2941,40 @@ function updateTechPowersDisplay() {
             </div>
         </div>
     `).join('');
+}
+
+// Auto-resize textarea functionality
+function autoResizeTextarea(textarea) {
+    if (!textarea) return;
+
+    // Reset height to auto to get the correct scrollHeight
+    textarea.style.height = 'auto';
+
+    // Calculate the new height based on content
+    const newHeight = Math.max(40, textarea.scrollHeight);
+
+    // Set the new height
+    textarea.style.height = newHeight + 'px';
+}
+
+function setupAutoResizeTextareas() {
+    // Find all textareas in description fields
+    const textareas = document.querySelectorAll('.description-field textarea');
+
+    textareas.forEach(textarea => {
+        // Auto-resize on content change
+        const resizeHandler = () => autoResizeTextarea(textarea);
+
+        // Set up event listeners
+        textarea.addEventListener('input', resizeHandler);
+        textarea.addEventListener('change', resizeHandler);
+
+        // Initial resize
+        autoResizeTextarea(textarea);
+
+        // Resize after a short delay to handle dynamic content
+        setTimeout(() => autoResizeTextarea(textarea), 100);
+    });
 }
 
 // Export for potential module usage
