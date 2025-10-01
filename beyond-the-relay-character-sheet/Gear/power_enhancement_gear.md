@@ -12,7 +12,7 @@ Omni-tools enhance tech power effectiveness through advanced computing and proje
 
 | Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
-| Hahne-Kedar OT-11 | Hahne-Kedar | +1 Power Range | Refund TP if a Tech attack misses | 100 | Common |
+| Hahne-Kedar OT-11 | Hahne-Kedar | +1 Power Range | Refund TP if a Tech attack misses once per combat. | 100 | Common |
 | Elanus 'Hornet' Interface | Elanus Risk Control | +1 Power Attack | Reroll one Tech attack roll | 125 | Common |
 | Rosenkov 'Patchline' | Rosenkov Materials | -1 TP cost for non-damaging Tech abilities | Auto-succeed on one tech Interact | 125 | Common |
 
