@@ -670,7 +670,7 @@ const omniToolData = {
     // Tier 1
     'Hahne-Kedar OT-11': {
         description: 'Basic Hahne-Kedar omni-tool with range enhancement capabilities.',
-        effects: 'Manufacturer: Hahne-Kedar\nCost: 100 credits | Rarity: Common\n\nPassive Bonus:\n• +1 Power Range\n\nSpecial Effect (Once per Mission):\n• Refund TP if a Tech attack misses once per combat'
+        effects: 'Manufacturer: Hahne-Kedar\nCost: 100 credits | Rarity: Common\n\nPassive Bonus:\n• +1 Power Range\n\nSpecial Effect (Once per Combat):\n• Refund TP if a Tech attack misses'
     },
     'Kassa Fabrication OT-12': {
         description: 'Fabrication-focused omni-tool with enhanced manufacturing.',
@@ -714,11 +714,11 @@ const bioticAmpData = {
     // Basic Amps (L1-L3)
     'L1 Biotic Amp': {
         description: 'Standard military-grade biotic amplifier with range enhancement.',
-        effects: 'Cost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• +1 hex Biotic Power Range\n\nSpecial Effect (Once per Mission):\n• Gain +1 to a Biotic attack roll'
+        effects: 'Cost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• +1 hex Biotic Power Range\n\nSpecial Effect (Once per Combat):\n• Gain +1 to a Biotic attack roll'
     },
     'L2 Biotic Amp': {
         description: 'Advanced biotic amplifier with cost reduction capabilities.',
-        effects: 'Cost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• Reduce BE cost of 1 ability by 1\n\nSpecial Effect (Once per Mission):\n• Regain 1 BE after using a Biotic ability'
+        effects: 'Cost: 500 credits | Rarity: Standard\n\nPassive Bonus:\n• Reduce BE cost of 1 ability by 1\n\nSpecial Effect (Once per Combat):\n• Regain 1 BE after using a Biotic ability'
     },
     'L3 Biotic Amp': {
         description: 'Advanced entry-level amp with enhanced capabilities.',

@@ -10,9 +10,9 @@ Omni-tools enhance tech power effectiveness through advanced computing and proje
 
 ### Tier 1: Omni-Tools
 
-| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
+| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Combat) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
-| Hahne-Kedar OT-11 | Hahne-Kedar | +1 Power Range | Refund TP if a Tech attack misses once per combat. | 100 | Common |
+| Hahne-Kedar OT-11 | Hahne-Kedar | +1 Power Range | Refund TP if a Tech attack misses. | 100 | Common |
 | Elanus 'Hornet' Interface | Elanus Risk Control | +1 Power Attack | Reroll one Tech attack roll | 125 | Common |
 | Rosenkov 'Patchline' | Rosenkov Materials | -1 TP cost for non-damaging Tech abilities | Auto-succeed on one tech Interact | 125 | Common |
 
@@ -20,7 +20,7 @@ Omni-tools enhance tech power effectiveness through advanced computing and proje
 
 ### Tier 2: Omni-Tools
 
-| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
+| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Combat) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
 | Serrice 'Corelink' Harness | Serrice Council | +1 Power Range, +1 Power Attack | Use a Tech ability as a Free Action | 400 | Rare |
 | Armax Tactical Uplink | Armax Arsenal | +2 Power Attack | Ignore cover bonuses for one Tech attack | 450 | Rare |
@@ -30,7 +30,7 @@ Omni-tools enhance tech power effectiveness through advanced computing and proje
 
 ### Tier 3: Omni-Tools
 
-| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
+| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Combat) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
 | Ariake 'Phantom' Suite | Ariake Technologies | +2 Power Range, +1 Power Attack | Cast the same Tech ability twice in one action | 900 | Very Rare |
 | Kassa 'Vanguard' Neural Link | Kassa Fabrication | +2 Power Attack | All Tech abilities cost -1 TP this round | 1,000 | Very Rare |
@@ -44,7 +44,7 @@ Biotic amplifiers enhance the user's natural biotic abilities through advanced m
 
 ### Tier 1: Biotic Amps
 
-| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
+| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Combat) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
 | L1 Biotic Amp | - | +1 hex Biotic Power Range | Gain +1 to a Biotic attack roll | 500 | Standard |
 | L2 Biotic Amp | - | Reduce BE cost of 1 ability by 1 | Regain 1 BE after using a Biotic ability | 500 | Standard |
@@ -56,7 +56,7 @@ Biotic amplifiers enhance the user's natural biotic abilities through advanced m
 
 ### Tier 2: Biotic Amps
 
-| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
+| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Combat) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
 | L3 Biotic Amp | - | +2 hexes Biotic Power Range | Ignore line-of-sight for a Biotic attack | 1,500 | Rare |
 | L4 Biotic Amp | - | Reduce BE cost of 2 abilities by 1 | Immediately regain 2 BE | 1,500 | Rare |
@@ -68,7 +68,7 @@ Biotic amplifiers enhance the user's natural biotic abilities through advanced m
 
 ### Tier 3: Biotic Amps
 
-| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Mission) | Cost | Rarity |
+| Name | Manufacturer | Passive Bonuses | Special Effect (Once per Combat) | Cost | Rarity |
 |------|--------------|-----------------|-----------------------------------|------|--------|
 | L5 Biotic Amp | - | +3 hexes Biotic Power Range | All Biotic attacks gain +1 range this round | 3,000 | Elite |
 | L6 Biotic Amp | - | Reduce BE cost of 3 abilities by 1 | Regain 3 BE instantly | 3,000 | Elite |
