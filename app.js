@@ -35,7 +35,7 @@ let characterEventListenersSetup = false;
 const classData = {
     'Soldier': {
         description: 'Pure combat specialist and battlefield anchor. Front-line fighter, weapon specialist, sustained damage dealer, tactical flexibility.',
-        effects: '• +2 to Health, +1 to Combat\n• **Weapon Mastery:** Choose weapon type for +1 damage permanently\n• **Heavy Weapons Training:** Can use heavy weapons and move at half speed\n• **Soldier Training:** Extra shots on multi-shot weapons\n• **Ammo Specialization:** Switch between Incendiary/Disruptor/Cryo ammo types\n• **Adrenaline Rush:** +1d4 weapon damage, half incoming damage, immunity to Stunned/Slowed (2 uses/mission)\n• **Concussive Shot:** 1d6+Combat damage, knock prone or stagger (4-8 uses/mission)\n• All armor types with no penalties'
+        effects: '• +2 to Health, +1 to Combat\n• Weapon Mastery: Choose weapon type for +1 damage permanently\n• Heavy Weapons Training: Can use heavy weapons and move at half speed\n• Soldier Training: Extra shots on multi-shot weapons\n• Ammo Specialization: Switch between Incendiary/Disruptor/Cryo ammo types\n• Adrenaline Rush: +1d4 weapon damage, half incoming damage, immunity to Stunned/Slowed (2 uses/mission)\n• Concussive Shot: 1d6+Combat damage, knock prone or stagger (4-8 uses/mission)\n• All armor types with no penalties'
     },
     'Engineer': {
         description: 'Technology expert who manipulates the battlefield through electronic warfare and gadgetry.',
@@ -55,7 +55,7 @@ const classData = {
     },
     'Infiltrator': {
         description: 'Tech-enhanced precision specialist and stealth operative. Long-range elimination, stealth operations, tech disruption, precision support.',
-        effects: '• +1 to Health, +1 to Combat, +1 to Tech\n• **Sniper Specialist:** +1 damage with sniper rifles, choose 1 additional Tier 1 tech power\n• **Stealth Operations:** +2 to stealth/infiltration/reconnaissance rolls\n• **Precision Training:** +1 to hit at 12+ hexes, crits deal +2d6 damage\n• **Tactical Cloak:** Invisible for 2 rounds, +2 attack, first attack +1d6 damage (3-7 uses/mission)\n• Weapon Access: Pistols, SMGs, Sniper Rifles\n• All armor types (heavy armor has tech power penalties)'
+        effects: '• +1 to Health, +1 to Combat, +1 to Tech\n• Sniper Specialist: +1 damage with sniper rifles, choose 1 additional Tier 1 tech power\n• Stealth Operations: +2 to stealth/infiltration/reconnaissance rolls\n• Precision Training: +1 to hit at 12+ hexes, crits deal +2d6 damage\n• Tactical Cloak: Invisible for 2 rounds, +2 attack, first attack +1d6 damage (3-7 uses/mission)\n• Weapon Access: Pistols, SMGs, Sniper Rifles\n• All armor types (heavy armor has tech power penalties)'
     }
 };
 
@@ -219,7 +219,7 @@ const weaponData = {
     // Assault Rifles
     'M-8 Avenger': {
         description: 'The M-8 Avenger is the standard-issue assault rifle of the Systems Alliance military. Proven in countless engagements across the galaxy, this versatile weapon offers dependable performance in all combat situations.',
-        effects: '• Range: 14 hexes\n• **Damage:** 1d6 + Combat\n• Damage Type: Kinetic\n• **Shots:** 2 (Soldier: 3)\n• **Thermal Clips:** 1 per mission\n• **Traits:** Reliable\n• Cost: 500 credits\n• **Rarity:** Standard',
+        effects: '• Range: 14 hexes\n• Damage: 1d6 + Combat\n• Damage Type: Kinetic\n• Shots: 2 (Soldier: 3)\n• Thermal Clips: 1 per mission\n• Traits: Reliable\n• Cost: 500 credits\n• Rarity: Standard',
         traits: {
             'Reliable': 'Reroll one failed attack roll per mission'
         }
@@ -2296,9 +2296,9 @@ function updateEquipmentDescription(equipmentType) {
 
         // Add traits section for weapons
         if (equipmentType.includes('weapon') && data.traits) {
-            effectsText += '\n\n**WEAPON TRAITS:**';
+            effectsText += '\n\nWEAPON TRAITS:';
             Object.entries(data.traits).forEach(([traitName, traitEffect]) => {
-                effectsText += `\n• **${traitName}:** ${traitEffect}`;
+                effectsText += `\n• ${traitName}: ${traitEffect}`;
             });
         }
 
@@ -2872,7 +2872,7 @@ function selectUpgrade(powerId, tier, upgradeIndex, powerType) {
         powerUpgrades[powerId].level15 = true;
         // Update power effects to include level 15 upgrade
         const level10Upgrade = upgradeData.level10[powerUpgrades[powerId].level10];
-        power.effects = level10Upgrade.effects + '\n\n**Level 15 Specialty:**\n' + upgradeData.level15.effects;
+        power.effects = level10Upgrade.effects + '\n\nLevel 15 Specialty:\n' + upgradeData.level15.effects;
     } else {
         powerUpgrades[powerId][tier] = upgradeIndex;
         // Update power effects to show selected upgrade
